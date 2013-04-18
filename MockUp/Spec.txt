@@ -1,0 +1,64 @@
+Data som behöver sparas om samtalen:
+
+Telefonnummer
+Tid inkommande.
+Tid avslutat.
+Återkoppla?
+Ring upp!
+PRIO
+Solved
+Mark as solved -> om den har relaterade, lös dem också?
+
+
+Relaterade ärenden exempel:
+Ärenden 	Löst	Ring	Återkoppla
+Ärende		x		x		x
+Ärende2		o		x		o
+
+
+
+
+
+Funktioner för PC Client:
+Nummer/namn presentation
+Logga information om samtal (Nummer, Tid)
+Spara noteringar
+Koppla nummer till personer
+Koppla person till företag
+Koppla företag till plats
+Tagga problem med frågeträd
+Länka ärenden med andra ärenden. (högerklick i huvudmeny. alt. drag and drop)
+
+
+Önskade funktioner PC Client:
+*Spela in samtal
+*Svara samtal
+*Avvisa samtal
+*Slå upp nummer från hitta.se/eniro.se
+*Visa uppringarens position på karta
+*Filhantering (koppla filer till ärenden)
+
+
+Önskad statistik för PC Client:
+*Tid spenderad per..Nummer, Person, Företag, Plats
+*Taggar
+
+
+
+PMS, GPS, Baudrate
+
+
+
+Taggar - Tree
+Id, NodeName, ParentId, Children[]
+
+
+<Tags>
+	<Mjukvara>
+		<PMS>
+			<Rött G />
+		</PMS>
+	</Mjukvara>
+	<Hårdvara>
+	</Hårdvara>
+</Tags>
