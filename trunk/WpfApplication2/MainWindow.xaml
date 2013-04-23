@@ -7,7 +7,8 @@
     <Grid Background="#FF2B2B2B">
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="55"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -17,7 +18,7 @@
         
 
         <!-- MENU -->
-        <Menu Height="20" VerticalAlignment="Top" Grid.ColumnSpan="2" Background="#FF3A3A3A" Foreground="AliceBlue" IsMainMenu="True">
+        <Menu Height="20" VerticalAlignment="Top"  Grid.ColumnSpan="2" Background="#FF3A3A3A" Foreground="AliceBlue" IsMainMenu="True">
             <MenuItem Header="_File">
                 <MenuItem Header="Test" Background="#FF3A3A3A" BorderBrush="#FF3A3A3A"></MenuItem>
             </MenuItem>
@@ -28,7 +29,7 @@
         </Menu>
 
         <!-- Search and timespan -->
-        <DockPanel Grid.Column="0" Grid.Row="0">
+        <DockPanel Grid.Column="0" Grid.Row="1">
             <StackPanel DockPanel.Dock="Right" Height="20" VerticalAlignment="Bottom"  Orientation="Horizontal" >
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type RadioButton}">
@@ -36,21 +37,27 @@
                         <Setter Property="Margin" Value="5,-5,15,0"/>
                     </Style>
                 </StackPanel.Resources>
-                <RadioButton IsChecked="True">Dagens</RadioButton>
-                <RadioButton>Veckans</RadioButton>
-                <RadioButton>Månadens</RadioButton>
-                <RadioButton>Alla</RadioButton>
             </StackPanel>
-            <TextBox HorizontalAlignment="Stretch" Height="23" TextWrapping="Wrap" Text="Sök..." VerticalAlignment="Bottom" Margin="10,5"/>
+            <TextBox HorizontalAlignment="Stretch" Height="23" TextWrapping="Wrap" Text="Sök..." VerticalAlignment="Bottom" Margin="10,5,0,5" />
            
         </DockPanel>
         
         <!-- LIST -->
-        <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="10,0,0,10"  Grid.Row="1">
+        <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="10,0,0,10"  Grid.Row="2">
             </ListBox>
         
-        <!-- Sweden-->
-        <Image Grid.Row="1" Source="Sverige.png" Stretch="Uniform" Grid.Column="1" />
+        <!-- Karta, Sökval tabcontrol-->
+        <TabControl Grid.Column="1" Grid.RowSpan="2" Grid.Row="1" Background="Transparent"  BorderBrush="AliceBlue" Margin="10,5,10,10">
+            <TabItem Header="Sökval">
+                
+            </TabItem>
+            <TabItem Header="Karta">
+                <Grid Background="Transparent">
+                    <Image Source="Sverige.png" Stretch="Uniform" />
+                </Grid>
+            </TabItem>
+            
+        </TabControl>
 
 
     </Grid>
