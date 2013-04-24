@@ -28,6 +28,7 @@ Koppla person till företag
 Koppla företag till plats
 Tagga problem med frågeträd
 Länka ärenden med andra ärenden. (högerklick i huvudmeny. alt. drag and drop)
+Sök på: Namn, Företag, Tid, Ärnr, 
 
 
 Önskade funktioner PC Client:
@@ -37,6 +38,7 @@ Länka ärenden med andra ärenden. (högerklick i huvudmeny. alt. drag and drop)
 *Slå upp nummer från hitta.se/eniro.se
 *Visa uppringarens position på karta
 *Filhantering (koppla filer till ärenden)
+
 
 
 Önskad statistik för PC Client:
