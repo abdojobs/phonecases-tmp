@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="600" Width="1000" MinWidth="1000" MinHeight="600">
 
-    
+
     <Grid Background="#FF2B2B2B">
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="35"/>
@@ -15,7 +15,7 @@
             <ColumnDefinition Width="700*"/>
             <ColumnDefinition Width="250*"/>
         </Grid.ColumnDefinitions>
-        
+
 
         <!-- MENU -->
         <Menu Height="20" VerticalAlignment="Top"  Grid.ColumnSpan="2" Background="#FF3A3A3A" Foreground="AliceBlue" IsMainMenu="True">
@@ -39,24 +39,50 @@
                 </StackPanel.Resources>
             </StackPanel>
             <TextBox HorizontalAlignment="Stretch" Height="23" TextWrapping="Wrap" Text="Sök..." VerticalAlignment="Bottom" Margin="10,5,0,5" />
-           
+
         </DockPanel>
-        
+
         <!-- LIST -->
         <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="10,0,0,10"  Grid.Row="2">
-            </ListBox>
-        
+        </ListBox>
+
         <!-- Karta, Sökval tabcontrol-->
         <TabControl Grid.Column="1" Grid.RowSpan="2" Grid.Row="1" Background="Transparent"  BorderBrush="AliceBlue" Margin="10,5,10,10">
             <TabItem Header="Sökval">
-                
+                <StackPanel>
+                    <!-- Datum -->
+                    <GroupBox Header="Datum" Foreground="AliceBlue" BorderBrush="AliceBlue" BorderThickness="0.5">
+                        <StackPanel>
+                            <Expander Header="Från datum" Foreground="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                                <Grid Background="Transparent">
+                                    <Calendar></Calendar>
+                                </Grid>
+                            </Expander>
+                            <Expander Header="Till datum" Foreground="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                                <Grid Background="Transparent">
+                                    <Calendar></Calendar>
+                                </Grid>
+                            </Expander>
+                            <Expander Header="Snabbdatum" Foreground="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                                <StackPanel Background="Transparent" >
+                                    <Button>Dag</Button>
+                                    <Button>Vecka</Button>
+                                    <Button>Månad</Button>
+                                    <Button>Alla</Button>
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
             </TabItem>
             <TabItem Header="Karta">
                 <Grid Background="Transparent">
                     <Image Source="Sverige.png" Stretch="Uniform" />
+                    <!-- Använd binding till currentlistviewitem och en converter för att välja rätt bild-->
                 </Grid>
             </TabItem>
             
+
         </TabControl>
 
 
