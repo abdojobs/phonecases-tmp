@@ -46,6 +46,9 @@ Sök på: Namn, Företag, Tid, Ärnr,
 *Taggar
 
 
+Ösnakde funktioner för Android Client:
+*Autodiscover server
+*Login / Pairing med PC klient.
 
 PMS, GPS, Baudrate
 
