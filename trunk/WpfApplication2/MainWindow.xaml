@@ -50,6 +50,7 @@
                                     <Calendar></Calendar>
                                 </Grid>
                             </Expander>
+                            <!--SPEED DATES-->
                             <Expander Header="Snabbdatum" Foreground="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Top" IsExpanded="True">
                                 <Grid Background="Transparent"  Margin="0,5">
                                     <Grid.ColumnDefinitions>
@@ -65,7 +66,7 @@
                                     <Button Grid.Column="3">Alla</Button>
                                 </Grid>
                             </Expander>
-
+                            <!--SEARCH FIELDS-->
                             <Expander Header="Sökfält" Foreground="AliceBlue" BorderBrush="Transparent" IsExpanded="True">
                                 <Grid Margin="0,3,0,0">
                                     <Grid.ColumnDefinitions>
