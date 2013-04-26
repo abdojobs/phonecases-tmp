@@ -18,16 +18,38 @@ namespace WpfApplication2
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+
+
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+
+            this.CommandBindings.Add(new CommandBinding(PCCommands.OpenCaseWindow, OpenCaseWindow));
+            InitCommandBindings();
+
+        }
+        private void InitCommandBindings()
+        {
+           // this.CommandBindings.Add(new CommandBinding(PCCommands.OpenCaseWindow, OpenCaseWindow));
         }
 
-        public void OpenCaseWindow(int caseNumber)
+        public void OpenCaseWindow(object sender, ExecutedRoutedEventArgs e)
         {
-        
+            CaseWindow cw = new CaseWindow();
+            if (e != null)
+                cw.Title = e.Parameter.ToString();
+            cw.Show();
         }
+
+    }
+    public static class PCCommands
+    {
+        private static readonly RoutedUICommand openCaseWindowCommand = new RoutedUICommand("Open Case Window", "OpenCaseWindow", typeof(PCCommands));
+
+        public static RoutedUICommand OpenCaseWindow { get { return openCaseWindowCommand; } }
+
     }
 }
