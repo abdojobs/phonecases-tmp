@@ -14,7 +14,7 @@
         
         <!-- RIGHT STACKPANEL-->
         <StackPanel Grid.Column="1" Margin="5">
-            <Expander Header="Ärendeinformation" Foreground="AliceBlue">
+            <Expander Header="Ärendeinformation" Foreground="AliceBlue" IsExpanded="True">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="60"/>
@@ -23,13 +23,46 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Användare:" Grid.Column="0" Grid.Row="0"/>
+                    <TextBlock Text="Ärendenummer:" Grid.Column="0" Grid.Row="0"/>
                     <TextBox HorizontalAlignment="Stretch"  Margin="5,0,0,5" Grid.Column="1" Grid.Row="0"/>
+
+                    <TextBlock Text="Namn:" Grid.Column="0" Grid.Row="1"/>
+                    <TextBox HorizontalAlignment="Stretch"  Margin="5,0,0,5" Grid.Column="1" Grid.Row="1"/>
+
+                    <TextBlock Text="Nummer:" Grid.Column="0" Grid.Row="2"/>
+                    <TextBox HorizontalAlignment="Stretch"  Margin="5,0,0,5" Grid.Column="1" Grid.Row="2"/>
+
+                    <TextBlock Text="Företag:" Grid.Column="0" Grid.Row="3"/>
+                    <TextBox HorizontalAlignment="Stretch"  Margin="5,0,0,5" Grid.Column="1" Grid.Row="3"/>
+
+                    <TextBlock Text="Län:" Grid.Column="0" Grid.Row="4"/>
+                    <TextBox HorizontalAlignment="Stretch"  Margin="5,0,0,5" Grid.Column="1" Grid.Row="4"/>
+
+
+                    <CheckBox Grid.Row="5" Grid.ColumnSpan="2" Foreground="AliceBlue">Löst</CheckBox>
+                    <CheckBox Grid.Row="6" Grid.ColumnSpan="2" Foreground="AliceBlue">Återkoppla</CheckBox>
+                    <CheckBox Grid.Row="7" Grid.ColumnSpan="2" Foreground="AliceBlue">PRIO</CheckBox>
 
 
                 </Grid>
+            </Expander>
+            <Expander Header="Länkade ärenden" Foreground="AliceBlue" IsExpanded="True">
+                <ListBox Height="auto" Background="Transparent">
+                    <ListBoxItem HorizontalAlignment="Center">
+                            <TextBlock Foreground="AliceBlue" >Inga länkade ärenden</TextBlock>
+                    </ListBoxItem>
+                </ListBox>
             </Expander>
         </StackPanel>
         
