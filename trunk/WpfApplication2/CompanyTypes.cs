@@ -12,12 +12,9 @@ namespace WpfApplication2
     using System;
     using System.Collections.Generic;
     
-    public partial class Customers
+    public partial class CompanyTypes
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string PhoneNumber { get; set; }
-    
-        public virtual Companies Company { get; set; }
     }
 }

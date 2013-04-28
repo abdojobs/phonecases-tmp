@@ -29,7 +29,7 @@ namespace WpfApplication2
         public string Reconnect { get; set; }
     
         public virtual ICollection<CaseTags> CaseTags { get; set; }
-        public virtual Customers Customers { get; set; }
-        public virtual Users Users { get; set; }
+        public virtual Customers Customer { get; set; }
+        public virtual Users CaseOwner { get; set; }
     }
 }

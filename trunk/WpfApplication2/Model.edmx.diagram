@@ -14,7 +14,7 @@
         <AssociationConnector Association="Model.CompaniesLocations" />
         <AssociationConnector Association="Model.CasesCustomers" />
         <AssociationConnector Association="Model.CustomersCompanies" />
-        <EntityTypeShape EntityType="Model.CompanyType" Width="1.5" PointX="4.625" PointY="4.75" FillColor="Green" />
+        <EntityTypeShape EntityType="Model.CompanyTypes" Width="1.5" PointX="4.625" PointY="4.75" FillColor="Green" />
         <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="9.875" PointY="4.75" FillColor="Red" />
         <AssociationConnector Association="Model.CasesUsers" />
         <AssociationConnector Association="Model.CompaniesCompanyType" />

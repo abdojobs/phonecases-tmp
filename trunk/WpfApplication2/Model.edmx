@@ -34,7 +34,7 @@
             <End Role="Customers" EntitySet="CustomersSet" />
             <End Role="Companies" EntitySet="CompaniesSet" />
           </AssociationSet>
-          <EntitySet Name="CompanyTypeSet" EntityType="Model.CompanyType" />
+          <EntitySet Name="CompanyTypesSet" EntityType="Model.CompanyTypes" />
           <EntitySet Name="UsersSet" EntityType="Model.Users" />
           <AssociationSet Name="CasesUsers" Association="Model.CasesUsers">
             <End Role="Cases" EntitySet="CasesSet" />
@@ -42,7 +42,7 @@
           </AssociationSet>
           <AssociationSet Name="CompaniesCompanyType" Association="Model.CompaniesCompanyType">
             <End Role="Companies" EntitySet="CompaniesSet" />
-            <End Role="CompanyType" EntitySet="CompanyTypeSet" />
+            <End Role="CompanyType" EntitySet="CompanyTypesSet" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Customers">
@@ -50,7 +50,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Companies" Relationship="Model.CustomersCompanies" FromRole="Customers" ToRole="Companies" />
+          <NavigationProperty Name="Company" Relationship="Model.CustomersCompanies" FromRole="Customers" ToRole="Companies" />
           <Property Type="String" Name="Name" Nullable="false" />
           <Property Type="String" Name="PhoneNumber" Nullable="false" />
         </EntityType>
@@ -61,21 +61,21 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Info" Nullable="false" />
           <NavigationProperty Name="CaseTags" Relationship="Model.CasesCaseTags" FromRole="Cases" ToRole="CaseTags" />
-          <NavigationProperty Name="Customers" Relationship="Model.CasesCustomers" FromRole="Cases" ToRole="Customers" />
+          <NavigationProperty Name="Customer" Relationship="Model.CasesCustomers" FromRole="Cases" ToRole="Customers" />
           <Property Type="String" Name="StartTime" Nullable="false" />
           <Property Type="String" Name="EndTime" Nullable="false" />
           <Property Type="String" Name="CloseTime" Nullable="false" />
           <Property Type="String" Name="Closed" Nullable="false" />
           <Property Type="String" Name="Active" Nullable="false" />
           <Property Type="String" Name="Reconnect" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Model.CasesUsers" FromRole="Cases" ToRole="Users" />
+          <NavigationProperty Name="CaseOwner" Relationship="Model.CasesUsers" FromRole="Cases" ToRole="Users" />
         </EntityType>
         <EntityType Name="Companies">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Locations" Relationship="Model.CompaniesLocations" FromRole="Companies" ToRole="Locations" />
+          <NavigationProperty Name="Location" Relationship="Model.CompaniesLocations" FromRole="Companies" ToRole="Locations" />
           <Property Type="String" Name="Name" Nullable="false" />
           <NavigationProperty Name="CompanyType" Relationship="Model.CompaniesCompanyType" FromRole="Companies" ToRole="CompanyType" />
         </EntityType>
@@ -109,7 +109,7 @@
           <End Type="Model.Customers" Role="Customers" Multiplicity="1" />
           <End Type="Model.Companies" Role="Companies" Multiplicity="0..1" />
         </Association>
-        <EntityType Name="CompanyType">
+        <EntityType Name="CompanyTypes">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -130,7 +130,7 @@
         </Association>
         <Association Name="CompaniesCompanyType">
           <End Type="Model.Companies" Role="Companies" Multiplicity="*" />
-          <End Type="Model.CompanyType" Role="CompanyType" Multiplicity="1" />
+          <End Type="Model.CompanyTypes" Role="CompanyType" Multiplicity="1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
