@@ -16,6 +16,10 @@ namespace WpfApplication2
     {
         public Cases()
         {
+            this.Reconnect = false;
+            this.HighPrio = false;
+            this.Closed = "False";
+            this.Active = true;
             this.CaseTags = new HashSet<CaseTags>();
         }
     
@@ -24,9 +28,10 @@ namespace WpfApplication2
         public string StartTime { get; set; }
         public string EndTime { get; set; }
         public string CloseTime { get; set; }
+        public bool Reconnect { get; set; }
+        public bool HighPrio { get; set; }
         public string Closed { get; set; }
-        public string Active { get; set; }
-        public string Reconnect { get; set; }
+        public bool Active { get; set; }
     
         public virtual ICollection<CaseTags> CaseTags { get; set; }
         public virtual Customers Customer { get; set; }
