@@ -5,15 +5,20 @@
     <!--MAIN GRID-->
     <Grid Background="#FF2B2B2B">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="140*"/>
-            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="500*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="290*" MinWidth="280"/>
         </Grid.ColumnDefinitions>
         
         <!-- MAIN TEXTBOX-->
-        <TextBox AcceptsReturn="True" Margin="5"></TextBox>
+        <TextBox AcceptsReturn="True" Margin="5,5,0,5"></TextBox>
         
+        <!-- GRID SPLITTER -->
+        <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" ResizeDirection="Auto" ResizeBehavior="PreviousAndNext" Width="10" Background="Transparent"/>
+
+
         <!-- RIGHT STACKPANEL-->
-        <StackPanel Grid.Column="1" Margin="5">
+        <StackPanel Grid.Column="2" Margin="0,5,5,5">
             <Expander Header="Ärendeinformation" Foreground="AliceBlue" IsExpanded="True">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -34,7 +39,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Ärendenummer:" Grid.Column="0" Grid.Row="0"/>
+                    <TextBlock Text="Ärendenr:" Grid.Column="0" Grid.Row="0"/>
                     <TextBox HorizontalAlignment="Stretch"  Margin="5,0,0,5" Grid.Column="1" Grid.Row="0"/>
 
                     <TextBlock Text="Namn:" Grid.Column="0" Grid.Row="1"/>
