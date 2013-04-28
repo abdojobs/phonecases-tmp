@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="ModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CustomersSet" EntityType="Model.Customers" />
+          <EntitySet Name="CasesSet" EntityType="Model.Cases" />
+          <EntitySet Name="CompaniesSet" EntityType="Model.Companies" />
+          <EntitySet Name="LocationsSet" EntityType="Model.Locations" />
+          <EntitySet Name="CaseTagsSet" EntityType="Model.CaseTags" />
+          <AssociationSet Name="CasesCaseTags" Association="Model.CasesCaseTags">
+            <End Role="Cases" EntitySet="CasesSet" />
+            <End Role="CaseTags" EntitySet="CaseTagsSet" />
+          </AssociationSet>
+          <AssociationSet Name="CompaniesLocations" Association="Model.CompaniesLocations">
+            <End Role="Locations" EntitySet="LocationsSet" />
+            <End Role="Companies" EntitySet="CompaniesSet" />
+          </AssociationSet>
+          <AssociationSet Name="CasesCustomers" Association="Model.CasesCustomers">
+            <End Role="Cases" EntitySet="CasesSet" />
+            <End Role="Customers" EntitySet="CustomersSet" />
+          </AssociationSet>
+          <AssociationSet Name="CustomersCompanies" Association="Model.CustomersCompanies">
+            <End Role="Customers" EntitySet="CustomersSet" />
+            <End Role="Companies" EntitySet="CompaniesSet" />
+          </AssociationSet>
+          <EntitySet Name="CompanyTypeSet" EntityType="Model.CompanyType" />
+          <EntitySet Name="UsersSet" EntityType="Model.Users" />
+          <AssociationSet Name="CasesUsers" Association="Model.CasesUsers">
+            <End Role="Cases" EntitySet="CasesSet" />
+            <End Role="Users" EntitySet="UsersSet" />
+          </AssociationSet>
+          <AssociationSet Name="CompaniesCompanyType" Association="Model.CompaniesCompanyType">
+            <End Role="Companies" EntitySet="CompaniesSet" />
+            <End Role="CompanyType" EntitySet="CompanyTypeSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Companies" Relationship="Model.CustomersCompanies" FromRole="Customers" ToRole="Companies" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="PhoneNumber" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cases">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Info" Nullable="false" />
+          <NavigationProperty Name="CaseTags" Relationship="Model.CasesCaseTags" FromRole="Cases" ToRole="CaseTags" />
+          <NavigationProperty Name="Customers" Relationship="Model.CasesCustomers" FromRole="Cases" ToRole="Customers" />
+          <Property Type="String" Name="StartTime" Nullable="false" />
+          <Property Type="String" Name="EndTime" Nullable="false" />
+          <Property Type="String" Name="CloseTime" Nullable="false" />
+          <Property Type="String" Name="Closed" Nullable="false" />
+          <Property Type="String" Name="Active" Nullable="false" />
+          <Property Type="String" Name="Reconnect" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Model.CasesUsers" FromRole="Cases" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Locations" Relationship="Model.CompaniesLocations" FromRole="Companies" ToRole="Locations" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <NavigationProperty Name="CompanyType" Relationship="Model.CompaniesCompanyType" FromRole="Companies" ToRole="CompanyType" />
+        </EntityType>
+        <EntityType Name="Locations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CaseTags">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Tag" Nullable="false" />
+        </EntityType>
+        <Association Name="CasesCaseTags">
+          <End Type="Model.Cases" Role="Cases" Multiplicity="1" />
+          <End Type="Model.CaseTags" Role="CaseTags" Multiplicity="*" />
+        </Association>
+        <Association Name="CompaniesLocations">
+          <End Type="Model.Locations" Role="Locations" Multiplicity="1" />
+          <End Type="Model.Companies" Role="Companies" Multiplicity="*" />
+        </Association>
+        <Association Name="CasesCustomers">
+          <End Type="Model.Cases" Role="Cases" Multiplicity="1" />
+          <End Type="Model.Customers" Role="Customers" Multiplicity="0..1" />
+        </Association>
+        <Association Name="CustomersCompanies">
+          <End Type="Model.Customers" Role="Customers" Multiplicity="1" />
+          <End Type="Model.Companies" Role="Companies" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="CompanyType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="PhoneNumber" Nullable="false" />
+        </EntityType>
+        <Association Name="CasesUsers">
+          <End Type="Model.Cases" Role="Cases" Multiplicity="1" />
+          <End Type="Model.Users" Role="Users" Multiplicity="0..1" />
+        </Association>
+        <Association Name="CompaniesCompanyType">
+          <End Type="Model.Companies" Role="Companies" Multiplicity="*" />
+          <End Type="Model.CompanyType" Role="CompanyType" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model" />
+        <Alias Key="Target" Value="Model.Store" />
+        <EntityContainerMapping CdmEntityContainer="ModelContainer" StorageEntityContainer="ModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="DefaultDatabaseSchema" Value="pc" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
