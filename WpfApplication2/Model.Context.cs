@@ -30,7 +30,7 @@ namespace WpfApplication2
         public DbSet<Companies> CompaniesSet { get; set; }
         public DbSet<Locations> LocationsSet { get; set; }
         public DbSet<CaseTags> CaseTagsSet { get; set; }
-        public DbSet<CompanyType> CompanyTypeSet { get; set; }
+        public DbSet<CompanyTypes> CompanyTypesSet { get; set; }
         public DbSet<Users> UsersSet { get; set; }
     }
 }

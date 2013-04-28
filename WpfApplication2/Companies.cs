@@ -17,7 +17,7 @@ namespace WpfApplication2
         public int Id { get; set; }
         public string Name { get; set; }
     
-        public virtual Locations Locations { get; set; }
-        public virtual CompanyType CompanyType { get; set; }
+        public virtual Locations Location { get; set; }
+        public virtual CompanyTypes CompanyType { get; set; }
     }
 }
