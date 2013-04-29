@@ -20,7 +20,6 @@ namespace WpfApplication2
             this.HighPrio = false;
             this.Closed = "False";
             this.Active = true;
-            this.CaseTags = new HashSet<CaseTags>();
         }
     
         public int Id { get; set; }
@@ -32,9 +31,10 @@ namespace WpfApplication2
         public bool HighPrio { get; set; }
         public string Closed { get; set; }
         public bool Active { get; set; }
+        public int CustomerId { get; set; }
+        public int UserId { get; set; }
     
-        public virtual ICollection<CaseTags> CaseTags { get; set; }
         public virtual Customers Customer { get; set; }
-        public virtual Users CaseOwner { get; set; }
+        public virtual Users Owner { get; set; }
     }
 }
