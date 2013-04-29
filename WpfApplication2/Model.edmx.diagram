@@ -7,17 +7,19 @@
       <Diagram DiagramId="3daad2eae3dd48a48c0e6792ddb43fc5" Name="Diagram1" >
         <EntityTypeShape EntityType="Model.Customers" Width="1.5" PointX="7.25" PointY="0.625" FillColor="Green" />
         <EntityTypeShape EntityType="Model.Cases" Width="1.5" PointX="9.875" PointY="0.625" />
-        <EntityTypeShape EntityType="Model.Companies" Width="1.5" PointX="7.375" PointY="4.75" FillColor="Green" />
-        <EntityTypeShape EntityType="Model.Locations" Width="1.5" PointX="7.375" PointY="7.25" FillColor="Green" />
-        <EntityTypeShape EntityType="Model.CaseTags" Width="1.5" PointX="12.125" PointY="0.625" />
-        <AssociationConnector Association="Model.CasesCaseTags" />
-        <AssociationConnector Association="Model.CompaniesLocations" />
-        <AssociationConnector Association="Model.CasesCustomers" />
-        <AssociationConnector Association="Model.CustomersCompanies" />
+        <EntityTypeShape EntityType="Model.Companies" Width="1.5" PointX="7.25" PointY="4.625" FillColor="Green" />
+        <EntityTypeShape EntityType="Model.Locations" Width="1.5" PointX="7.25" PointY="7.25" FillColor="Green" />
+        <EntityTypeShape EntityType="Model.CaseTags" Width="1.5" PointX="12.25" PointY="0.625" />
         <EntityTypeShape EntityType="Model.CompanyTypes" Width="1.5" PointX="4.625" PointY="4.75" FillColor="Green" />
         <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="9.875" PointY="4.75" FillColor="Red" />
-        <AssociationConnector Association="Model.CasesUsers" />
-        <AssociationConnector Association="Model.CompaniesCompanyType" />
+        <AssociationConnector Association="Model.CustomersCases" />
+        <AssociationConnector Association="Model.UsersCases" />
+        <EntityTypeShape EntityType="Model.Tags" Width="1.5" PointX="14.375" PointY="0.625" />
+        <AssociationConnector Association="Model.CompaniesCustomers" />
+        <AssociationConnector Association="Model.LocationsCompanies" />
+        <AssociationConnector Association="Model.CompanyTypesCompanies" />
+        <AssociationConnector Association="Model.TagsCaseTags" />
+        <AssociationConnector Association="Model.CasesCaseTags" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

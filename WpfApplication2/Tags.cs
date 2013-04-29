@@ -12,19 +12,9 @@ namespace WpfApplication2
     using System;
     using System.Collections.Generic;
     
-    public partial class Customers
+    public partial class Tags
     {
-        public Customers()
-        {
-            this.Cases = new HashSet<Cases>();
-        }
-    
         public int Id { get; set; }
         public string Name { get; set; }
-        public string PhoneNumber { get; set; }
-        public int CompanyId { get; set; }
-    
-        public virtual ICollection<Cases> Cases { get; set; }
-        public virtual Companies Company { get; set; }
     }
 }

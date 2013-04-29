@@ -25,12 +25,13 @@ namespace WpfApplication2
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Customers> CustomersSet { get; set; }
-        public DbSet<Cases> CasesSet { get; set; }
-        public DbSet<Companies> CompaniesSet { get; set; }
-        public DbSet<Locations> LocationsSet { get; set; }
-        public DbSet<CaseTags> CaseTagsSet { get; set; }
-        public DbSet<CompanyTypes> CompanyTypesSet { get; set; }
-        public DbSet<Users> UsersSet { get; set; }
+        public DbSet<Customers> Customers { get; set; }
+        public DbSet<Cases> Cases { get; set; }
+        public DbSet<Companies> Companies { get; set; }
+        public DbSet<Locations> Locations { get; set; }
+        public DbSet<CaseTags> CaseTags { get; set; }
+        public DbSet<CompanyTypes> CompanyTypes { get; set; }
+        public DbSet<Users> Users { get; set; }
+        public DbSet<Tags> Tags { get; set; }
     }
 }

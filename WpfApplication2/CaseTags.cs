@@ -15,6 +15,10 @@ namespace WpfApplication2
     public partial class CaseTags
     {
         public int Id { get; set; }
-        public string Tag { get; set; }
+        public int TagsId { get; set; }
+        public int CasesId { get; set; }
+    
+        public virtual Tags Tag { get; set; }
+        public virtual Cases Case { get; set; }
     }
 }
