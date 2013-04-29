@@ -257,12 +257,12 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Info" Nullable="false" />
-          <Property Type="String" Name="StartTime" Nullable="false" />
-          <Property Type="String" Name="EndTime" Nullable="true" />
-          <Property Type="String" Name="CloseTime" Nullable="true" />
+          <Property Type="DateTime" Name="StartTime" Nullable="false" />
+          <Property Type="DateTime" Name="EndTime" Nullable="true" />
+          <Property Type="DateTime" Name="CloseTime" Nullable="true" />
           <Property Type="Boolean" Name="Reconnect" Nullable="false" DefaultValue="False" />
           <Property Type="Boolean" Name="HighPrio" Nullable="false" DefaultValue="False" />
-          <Property Type="String" Name="Closed" Nullable="false" DefaultValue="False" />
+          <Property Type="Boolean" Name="Closed" Nullable="false" />
           <Property Type="Boolean" Name="Active" Nullable="false" DefaultValue="True" />
           <NavigationProperty Name="Customer" Relationship="Model.CustomersCases" FromRole="Cases" ToRole="Customers" />
           <Property Type="Int32" Name="CustomerId" Nullable="false" />
