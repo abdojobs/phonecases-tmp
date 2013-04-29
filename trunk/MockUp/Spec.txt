@@ -67,3 +67,39 @@ Id, NodeName, ParentId, Children[]
 	<Hårdvara>
 	</Hårdvara>
 </Tags>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Command object - Objekt som identifierar ett kommando
+Input binding - binding mellan command object och ett input
+Command source - objektet som invokerade kommandot.
+Command target - UI-elemntet som kommer att utföra kommandot.
+Command binding - binding mellan command object och en funktion
