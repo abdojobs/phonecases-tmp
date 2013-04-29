@@ -18,18 +18,17 @@ namespace WpfApplication2
         {
             this.Reconnect = false;
             this.HighPrio = false;
-            this.Closed = "False";
             this.Active = true;
         }
     
         public int Id { get; set; }
         public string Info { get; set; }
-        public string StartTime { get; set; }
-        public string EndTime { get; set; }
-        public string CloseTime { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public Nullable<System.DateTime> EndTime { get; set; }
+        public Nullable<System.DateTime> CloseTime { get; set; }
         public bool Reconnect { get; set; }
         public bool HighPrio { get; set; }
-        public string Closed { get; set; }
+        public bool Closed { get; set; }
         public bool Active { get; set; }
         public int CustomerId { get; set; }
         public int UserId { get; set; }
