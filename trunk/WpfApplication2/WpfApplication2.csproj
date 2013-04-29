@@ -60,6 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CompanyTypes.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -85,9 +88,6 @@
       <DependentUpon>CaseWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Companies.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CompanyType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Customers.cs">
