@@ -22,16 +22,17 @@ namespace WpfApplication2
         }
     
         public int Id { get; set; }
+        public int CustomerId { get; set; }
+        public int UserId { get; set; }
         public string Info { get; set; }
         public System.DateTime StartTime { get; set; }
         public Nullable<System.DateTime> EndTime { get; set; }
+        public Nullable<System.DateTime> TotalTime { get; set; }
         public Nullable<System.DateTime> CloseTime { get; set; }
         public bool Reconnect { get; set; }
         public bool HighPrio { get; set; }
         public bool Closed { get; set; }
         public bool Active { get; set; }
-        public int CustomerId { get; set; }
-        public int UserId { get; set; }
     
         public virtual Customers Customer { get; set; }
         public virtual Users Owner { get; set; }
