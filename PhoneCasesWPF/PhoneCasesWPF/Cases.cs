@@ -18,11 +18,11 @@ namespace PhoneCasesWPF
         {
             this.Reconnect = false;
             this.HighPrio = false;
+            this.Closed = false;
             this.Active = true;
         }
     
         public int Id { get; set; }
-        public int CustomerId { get; set; }
         public int UserId { get; set; }
         public string Info { get; set; }
         public System.DateTime StartTime { get; set; }

@@ -36,12 +36,29 @@ namespace PhoneCasesWPF
             
             InitBindings();
 
-            
 
-        
-            
-            //mc.Users.Add(new Users() { Name = "Tommy", PhoneNumber = "0734186405" });
-            //mc.SaveChanges();
+
+
+            //m_mc.Users.Add(new Users() { Name = "Tommy", PhoneNumber = "0734186405" });            
+            //m_mc.Users.Add(new Users() { Name = "Pelle", PhoneNumber = "0734186415" });
+
+            //m_mc.Locations.Add(new Locations() { Name = "Värmland" });
+
+            //m_mc.CompanyTypes.Add(new CompanyTypes() { Name = "AMB" });
+            //m_mc.CompanyTypes.Add(new CompanyTypes() { Name = "RTJ" });
+            //m_mc.CompanyTypes.Add(new CompanyTypes() { Name = "Polis" });
+            //m_mc.SaveChanges();
+
+            //m_mc.Companies.Add(new Companies() { Name = "Landstinget Värmland", CompanyTypesId = 1, LocationId = 1, });
+            //m_mc.SaveChanges();
+
+            //m_mc.Customers.Add(new Customers() {Name = "Emil Palm", CompanyId = 2, PhoneNumber="0"});
+            //m_mc.SaveChanges();
+
+
+            //m_mc.Cases.Add(new Cases() { UserId = 1, CustomersId = 3, StartTime = DateTime.Now });
+
+            //m_mc.SaveChanges();
 
         }
         private void InitBindings()

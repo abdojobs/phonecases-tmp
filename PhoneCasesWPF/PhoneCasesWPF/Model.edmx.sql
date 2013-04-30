@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 04/30/2013 14:45:31
+-- Date Created: 04/30/2013 15:04:58
 -- Generated from EDMX file: E:\ProgrammingProjects\PhoneCasesWPF\PhoneCasesWPF\PhoneCasesWPF\Model.edmx
 -- --------------------------------------------------
 
@@ -35,6 +35,9 @@ GO
 IF OBJECT_ID(N'[pc].[FK_CustomersCases]', 'F') IS NOT NULL
     ALTER TABLE [pc].[Cases] DROP CONSTRAINT [FK_CustomersCases];
 GO
+IF OBJECT_ID(N'[pc].[FK_CompanyTypesCompanies]', 'F') IS NOT NULL
+    ALTER TABLE [pc].[Companies] DROP CONSTRAINT [FK_CompanyTypesCompanies];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -60,6 +63,9 @@ IF OBJECT_ID(N'[pc].[CaseTags]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[pc].[Tags]', 'U') IS NOT NULL
     DROP TABLE [pc].[Tags];
+GO
+IF OBJECT_ID(N'[pc].[CompanyTypes]', 'U') IS NOT NULL
+    DROP TABLE [pc].[CompanyTypes];
 GO
 
 -- --------------------------------------------------
@@ -95,9 +101,8 @@ GO
 -- Creating table 'Cases'
 CREATE TABLE [pc].[Cases] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [CustomerId] int  NOT NULL,
     [UserId] int  NOT NULL,
-    [Info] nvarchar(max)  NOT NULL,
+    [Info] nvarchar(max)  NULL,
     [StartTime] datetime  NOT NULL,
     [EndTime] datetime  NULL,
     [TotalTime] datetime  NULL,
