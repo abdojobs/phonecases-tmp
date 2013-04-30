@@ -70,9 +70,9 @@ namespace PhoneCasesWPF
             //var UsrList = m_mc.Users.Where(p => p.Name == "Tommy").Select(p=> p.Name).ToList();
             //TheMainWindow.DataContext = m_mc.Users;
 
-            m_mc.Users.Load();
+            m_mc.Cases.Load();
             
-            MainListView.DataContext = m_mc.Users.Local;
+            MainListView.DataContext = m_mc.Cases.Local;
             
         }
 
