@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:PhoneCasesWPF"
-        Title="MainWindow" Height="600" Width="1000" MinWidth="1000" MinHeight="600">
+        Title="MainWindow" Height="600" Width="1000" MinWidth="1000" MinHeight="600" Name="TheMainWindow">
 
     <!-- MAIN GRID -->
     <Grid Background="#FF2B2B2B">
@@ -30,8 +30,13 @@
         </Menu>
 
 
-        <!-- LIST -->
-        <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="5"  Grid.Row="1">
+        <!-- MAIN LIST BOX -->
+        <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="5"  Grid.Row="1" Name="MainListBox" ItemsSource="{Binding}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=Name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
         <!-- RIGHT TABCONTROL -->
