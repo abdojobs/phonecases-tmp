@@ -51,8 +51,8 @@ namespace PhoneCasesWPF
             //Data bindings
             //var UsrList = m_mc.Users.Where(p => p.Name == "Tommy").Select(p=> p.Name).ToList();
             //TheMainWindow.DataContext = m_mc.Users;
-            
-            MainListBox.DataContext = m_mc.Users.ToList();
+
+            MainListView.DataContext = m_mc.Users.ToList();
             
         }
 
