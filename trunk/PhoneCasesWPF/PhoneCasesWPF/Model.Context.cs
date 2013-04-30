@@ -32,5 +32,6 @@ namespace PhoneCasesWPF
         public DbSet<Locations> Locations { get; set; }
         public DbSet<CaseTags> CaseTags { get; set; }
         public DbSet<Tags> Tags { get; set; }
+        public DbSet<CompanyTypes> CompanyTypes { get; set; }
     }
 }

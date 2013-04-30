@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using System.ComponentModel;
+using System.Data.Entity;
 
 namespace PhoneCasesWPF
 {
@@ -52,7 +53,9 @@ namespace PhoneCasesWPF
             //var UsrList = m_mc.Users.Where(p => p.Name == "Tommy").Select(p=> p.Name).ToList();
             //TheMainWindow.DataContext = m_mc.Users;
 
-            MainListView.DataContext = m_mc.Users.ToList();
+            m_mc.Users.Load();
+            
+            MainListView.DataContext = m_mc.Users.Local;
             
         }
 
