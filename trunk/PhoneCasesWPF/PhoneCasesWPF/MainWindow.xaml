@@ -30,14 +30,17 @@
         </Menu>
 
 
-        <!-- MAIN LIST BOX -->
-        <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="5"  Grid.Row="1" Name="MainListBox" ItemsSource="{Binding}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Path=Name}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <!-- MAIN LIST VIEW -->
+        <ListView HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="5"  Grid.Row="1" Name="MainListView" ItemsSource="{Binding}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="Auto" Header="ID" DisplayMemberBinding="{Binding Path=Id}"/>
+                    <GridViewColumn Width="Auto" Header="Namn" DisplayMemberBinding="{Binding Path=Name}" />
+                    <GridViewColumn Width="Auto" Header="Nummer" DisplayMemberBinding="{Binding Path=PhoneNumber}" />
+                </GridView>
+            </ListView.View>
+
+        </ListView>
 
         <!-- RIGHT TABCONTROL -->
         <TabControl Grid.Column="2" Grid.Row="1" Background="Transparent"  BorderBrush="AliceBlue" Margin="0,5,10,10">
