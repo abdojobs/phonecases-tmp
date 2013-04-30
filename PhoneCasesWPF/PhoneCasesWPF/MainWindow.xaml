@@ -35,8 +35,20 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="Auto" Header="ID" DisplayMemberBinding="{Binding Path=Id}"/>
-                    <GridViewColumn Width="Auto" Header="Namn" DisplayMemberBinding="{Binding Path=Name}" />
-                    <GridViewColumn Width="Auto" Header="Nummer" DisplayMemberBinding="{Binding Path=PhoneNumber}" />
+                    <GridViewColumn Width="Auto" Header="Ägare" DisplayMemberBinding="{Binding Path=Owner.Name}" />
+                    <GridViewColumn Width="Auto" Header="Kund" DisplayMemberBinding="{Binding Path=Customer.Name}" />
+                    <GridViewColumn Width="Auto" Header="Typ" DisplayMemberBinding="{Binding Path=Customer.Company.CompanyType.Name}" />
+                    <GridViewColumn Width="Auto" Header="Företag" DisplayMemberBinding="{Binding Path=Customer.Company.Name}" />
+                    <GridViewColumn Width="Auto" Header="Inkom" DisplayMemberBinding="{Binding Path=StartTime}" />
+                    <!--<GridViewColumn Width="Auto" Header="Avslutades" DisplayMemberBinding="{Binding Path=EndTime}" />-->
+                    <GridViewColumn Width="Auto" Header="Total tid" DisplayMemberBinding="{Binding Path=TotalTime}" />
+                    <GridViewColumn Width="Auto" Header="Klar">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Closed}" IsEnabled="False"></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
 

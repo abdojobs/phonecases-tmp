@@ -113,5 +113,5 @@ Command Binding:
 
 
 Data Binding:
-	
+	Bindings utgår från närmsta datacontext. 
 
