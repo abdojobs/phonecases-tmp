@@ -13,6 +13,7 @@
     <EntitySet Name="Locations" EntityType="Model.Store.Locations" store:Type="Tables" Schema="pc" />
     <EntitySet Name="CaseTags" EntityType="Model.Store.CaseTags" store:Type="Tables" Schema="pc" />
     <EntitySet Name="Tags" EntityType="Model.Store.Tags" store:Type="Tables" Schema="pc" />
+    <EntitySet Name="CompanyTypes" EntityType="Model.Store.CompanyTypes" store:Type="Tables" Schema="pc" />
     <AssociationSet Name="CompaniesCustomers" Association="Model.Store.CompaniesCustomers">
       <End Role="Companies" EntitySet="Companies" />
       <End Role="Customers" EntitySet="Customers" />
@@ -36,6 +37,10 @@
     <AssociationSet Name="CustomersCases" Association="Model.Store.CustomersCases">
       <End Role="Customers" EntitySet="Customers" />
       <End Role="Cases" EntitySet="Cases" />
+    </AssociationSet>
+    <AssociationSet Name="CompanyTypesCompanies" Association="Model.Store.CompanyTypesCompanies">
+      <End Role="CompanyTypes" EntitySet="CompanyTypes" />
+      <End Role="Companies" EntitySet="Companies" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Companies">
@@ -98,6 +103,13 @@
     <Property Name="CasesId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Tags">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CompanyTypes">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -176,6 +188,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="CompanyTypesCompanies">
+    <End Role="CompanyTypes" Type="Model.Store.CompanyTypes" Multiplicity="1" />
+    <End Role="Companies" Type="Model.Store.Companies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Companies">
+        <PropertyRef Name="CompanyTypesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -212,6 +236,11 @@
             <End Role="Customers" EntitySet="Customers" />
             <End Role="Cases" EntitySet="Cases" />
           </AssociationSet>
+          <EntitySet Name="CompanyTypes" EntityType="Model.CompanyTypes" />
+          <AssociationSet Name="CompanyTypesCompanies" Association="Model.CompanyTypesCompanies">
+            <End Role="CompanyTypes" EntitySet="CompanyTypes" />
+            <End Role="Companies" EntitySet="Companies" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Companies">
           <Key>
@@ -220,8 +249,9 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" />
           <Property Type="Int32" Name="LocationId" Nullable="false" />
-          <Property Type="Int32" Name="CompanyTypesId" Nullable="false" />
           <NavigationProperty Name="Location" Relationship="Model.LocationsCompanies" FromRole="Companies" ToRole="Locations" />
+          <NavigationProperty Name="CompanyType" Relationship="Model.CompanyTypesCompanies" FromRole="Companies" ToRole="CompanyTypes" />
+          <Property Type="Int32" Name="CompanyTypesId" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -357,6 +387,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CompanyTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+        </EntityType>
+        <Association Name="CompanyTypesCompanies">
+          <End Type="Model.CompanyTypes" Role="CompanyTypes" Multiplicity="1" />
+          <End Type="Model.Companies" Role="Companies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Companies">
+              <PropertyRef Name="CompanyTypesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -431,6 +480,14 @@
     <EntitySetMapping Name="Tags">
       <EntityTypeMapping TypeName="IsTypeOf(Model.Tags)">
         <MappingFragment StoreEntitySet="Tags">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompanyTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.CompanyTypes)">
+        <MappingFragment StoreEntitySet="CompanyTypes">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>

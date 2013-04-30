@@ -69,6 +69,9 @@
     <Compile Include="Companies.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="CompanyTypes.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Customers.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

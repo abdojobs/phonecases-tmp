@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 04/30/2013 09:12:41
+-- Date Created: 04/30/2013 14:45:31
 -- Generated from EDMX file: E:\ProgrammingProjects\PhoneCasesWPF\PhoneCasesWPF\PhoneCasesWPF\Model.edmx
 -- --------------------------------------------------
 
@@ -17,49 +17,49 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_CompaniesCustomers]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Customers] DROP CONSTRAINT [FK_CompaniesCustomers];
+IF OBJECT_ID(N'[pc].[FK_CompaniesCustomers]', 'F') IS NOT NULL
+    ALTER TABLE [pc].[Customers] DROP CONSTRAINT [FK_CompaniesCustomers];
 GO
-IF OBJECT_ID(N'[dbo].[FK_LocationsCompanies]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Companies] DROP CONSTRAINT [FK_LocationsCompanies];
+IF OBJECT_ID(N'[pc].[FK_LocationsCompanies]', 'F') IS NOT NULL
+    ALTER TABLE [pc].[Companies] DROP CONSTRAINT [FK_LocationsCompanies];
 GO
-IF OBJECT_ID(N'[dbo].[FK_UsersCases]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Cases] DROP CONSTRAINT [FK_UsersCases];
+IF OBJECT_ID(N'[pc].[FK_UsersCases]', 'F') IS NOT NULL
+    ALTER TABLE [pc].[Cases] DROP CONSTRAINT [FK_UsersCases];
 GO
-IF OBJECT_ID(N'[dbo].[FK_TagsCaseTags]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CaseTags] DROP CONSTRAINT [FK_TagsCaseTags];
+IF OBJECT_ID(N'[pc].[FK_TagsCaseTags]', 'F') IS NOT NULL
+    ALTER TABLE [pc].[CaseTags] DROP CONSTRAINT [FK_TagsCaseTags];
 GO
-IF OBJECT_ID(N'[dbo].[FK_CasesCaseTags]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CaseTags] DROP CONSTRAINT [FK_CasesCaseTags];
+IF OBJECT_ID(N'[pc].[FK_CasesCaseTags]', 'F') IS NOT NULL
+    ALTER TABLE [pc].[CaseTags] DROP CONSTRAINT [FK_CasesCaseTags];
 GO
-IF OBJECT_ID(N'[dbo].[FK_CustomersCases]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Cases] DROP CONSTRAINT [FK_CustomersCases];
+IF OBJECT_ID(N'[pc].[FK_CustomersCases]', 'F') IS NOT NULL
+    ALTER TABLE [pc].[Cases] DROP CONSTRAINT [FK_CustomersCases];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Companies]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Companies];
+IF OBJECT_ID(N'[pc].[Companies]', 'U') IS NOT NULL
+    DROP TABLE [pc].[Companies];
 GO
-IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Users];
+IF OBJECT_ID(N'[pc].[Users]', 'U') IS NOT NULL
+    DROP TABLE [pc].[Users];
 GO
-IF OBJECT_ID(N'[dbo].[Customers]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Customers];
+IF OBJECT_ID(N'[pc].[Customers]', 'U') IS NOT NULL
+    DROP TABLE [pc].[Customers];
 GO
-IF OBJECT_ID(N'[dbo].[Cases]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Cases];
+IF OBJECT_ID(N'[pc].[Cases]', 'U') IS NOT NULL
+    DROP TABLE [pc].[Cases];
 GO
-IF OBJECT_ID(N'[dbo].[Locations]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Locations];
+IF OBJECT_ID(N'[pc].[Locations]', 'U') IS NOT NULL
+    DROP TABLE [pc].[Locations];
 GO
-IF OBJECT_ID(N'[dbo].[CaseTags]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[CaseTags];
+IF OBJECT_ID(N'[pc].[CaseTags]', 'U') IS NOT NULL
+    DROP TABLE [pc].[CaseTags];
 GO
-IF OBJECT_ID(N'[dbo].[Tags]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Tags];
+IF OBJECT_ID(N'[pc].[Tags]', 'U') IS NOT NULL
+    DROP TABLE [pc].[Tags];
 GO
 
 -- --------------------------------------------------
@@ -132,6 +132,13 @@ CREATE TABLE [pc].[Tags] (
 );
 GO
 
+-- Creating table 'CompanyTypes'
+CREATE TABLE [pc].[CompanyTypes] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -175,6 +182,12 @@ GO
 -- Creating primary key on [Id] in table 'Tags'
 ALTER TABLE [pc].[Tags]
 ADD CONSTRAINT [PK_Tags]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'CompanyTypes'
+ALTER TABLE [pc].[CompanyTypes]
+ADD CONSTRAINT [PK_CompanyTypes]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -264,6 +277,20 @@ ADD CONSTRAINT [FK_CustomersCases]
 CREATE INDEX [IX_FK_CustomersCases]
 ON [pc].[Cases]
     ([CustomersId]);
+GO
+
+-- Creating foreign key on [CompanyTypesId] in table 'Companies'
+ALTER TABLE [pc].[Companies]
+ADD CONSTRAINT [FK_CompanyTypesCompanies]
+    FOREIGN KEY ([CompanyTypesId])
+    REFERENCES [pc].[CompanyTypes]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CompanyTypesCompanies'
+CREATE INDEX [IX_FK_CompanyTypesCompanies]
+ON [pc].[Companies]
+    ([CompanyTypesId]);
 GO
 
 -- --------------------------------------------------
