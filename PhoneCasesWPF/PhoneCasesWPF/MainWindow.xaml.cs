@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.ComponentModel;
+
 namespace PhoneCasesWPF
 {
     /// <summary>
@@ -23,21 +25,35 @@ namespace PhoneCasesWPF
 
     public partial class MainWindow : Window
     {
+        private ModelContainer m_mc = new ModelContainer();
+        //public ModelContainer Mc { get { return m_mc; } set { m_mc = value; } } 
+
         public MainWindow()
         {
             InitializeComponent();
 
-            this.CommandBindings.Add(new CommandBinding(PCCommands.OpenCaseWindow, OpenCaseWindow));
-            InitCommandBindings();
+            
+            InitBindings();
 
-            //ModelContainer mc = new ModelContainer();
+            
+
+        
+            
             //mc.Users.Add(new Users() { Name = "Tommy", PhoneNumber = "0734186405" });
             //mc.SaveChanges();
 
         }
-        private void InitCommandBindings()
+        private void InitBindings()
         {
-           // this.CommandBindings.Add(new CommandBinding(PCCommands.OpenCaseWindow, OpenCaseWindow));
+            //Command bindings
+            this.CommandBindings.Add(new CommandBinding(PCCommands.OpenCaseWindow, OpenCaseWindow));
+           
+            //Data bindings
+            //var UsrList = m_mc.Users.Where(p => p.Name == "Tommy").Select(p=> p.Name).ToList();
+            //TheMainWindow.DataContext = m_mc.Users;
+            
+            MainListBox.DataContext = m_mc.Users.ToList();
+            
         }
 
         public void OpenCaseWindow(object sender, ExecutedRoutedEventArgs e)
