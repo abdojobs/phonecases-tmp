@@ -35,13 +35,27 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="Auto" Header="ID" DisplayMemberBinding="{Binding Path=Id}"/>
-                    <GridViewColumn Width="Auto" Header="Ägare" DisplayMemberBinding="{Binding Path=Owner.Name}" />
+                    <!--<GridViewColumn Width="Auto" Header="Ägare" DisplayMemberBinding="{Binding Path=Owner.Name}" />-->
                     <GridViewColumn Width="Auto" Header="Kund" DisplayMemberBinding="{Binding Path=Customer.Name}" />
                     <GridViewColumn Width="Auto" Header="Typ" DisplayMemberBinding="{Binding Path=Customer.Company.CompanyType.Name}" />
                     <GridViewColumn Width="Auto" Header="Företag" DisplayMemberBinding="{Binding Path=Customer.Company.Name}" />
                     <GridViewColumn Width="Auto" Header="Inkom" DisplayMemberBinding="{Binding Path=StartTime}" />
                     <!--<GridViewColumn Width="Auto" Header="Avslutades" DisplayMemberBinding="{Binding Path=EndTime}" />-->
                     <GridViewColumn Width="Auto" Header="Total tid" DisplayMemberBinding="{Binding Path=TotalTime}" />
+                    <GridViewColumn Width="Auto" Header="PRIO">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=HighPrio}" IsEnabled="False"></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" Header="Återkoppla">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=Reconnect}" IsEnabled="False"></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn Width="Auto" Header="Klar">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -49,6 +63,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    <GridViewColumn Width="Auto" Header="Taggar" DisplayMemberBinding="{Binding Path=Tag.Name}" />
                 </GridView>
             </ListView.View>
 
