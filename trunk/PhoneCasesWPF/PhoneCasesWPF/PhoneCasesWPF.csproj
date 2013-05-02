@@ -66,6 +66,7 @@
     <Compile Include="CaseTags.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="CommandListViewItem.cs" />
     <Compile Include="Companies.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
