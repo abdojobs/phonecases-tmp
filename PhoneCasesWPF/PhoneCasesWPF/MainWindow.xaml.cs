@@ -74,13 +74,16 @@ namespace PhoneCasesWPF
             
             MainListView.DataContext = m_mc.Cases.Local;
             
+            MainListView.ItemsSource = m_mc.Cases.Local;
+            
         }
 
         public void OpenCaseWindow(object sender, ExecutedRoutedEventArgs e)
         {
             CaseWindow cw = new CaseWindow();
             if (e != null)
-                cw.Title = e.Parameter.ToString();
+                if(e.Parameter != null)
+                    cw.Title = e.Parameter.ToString();
             cw.Show();
         }
 
@@ -92,4 +95,7 @@ namespace PhoneCasesWPF
         public static RoutedUICommand OpenCaseWindow { get { return openCaseWindowCommand; } }
 
     }
+
+
+   
 }

@@ -31,9 +31,19 @@
 
 
         <!-- MAIN LIST VIEW -->
-        <ListView HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="5"  Grid.Row="1" Name="MainListView" ItemsSource="{Binding}">
-            <ListView.View>
+        <ListView HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="5"  Grid.Row="1" Name="MainListView" >
+            <!--<local:CommandListViewItem Command="local:PCCommands.OpenCaseWindow" Parameter="TEST">
+                test
+            </local:CommandListViewItem>-->
+            <ListView.Style>
+                <Style>
+                    
+                </Style>
+            </ListView.Style>
+                <ListView.View>
+                    
                 <GridView>
+                   
                     <GridViewColumn Width="Auto" Header="ID" DisplayMemberBinding="{Binding Path=Id}"/>
                     <!--<GridViewColumn Width="Auto" Header="Ägare" DisplayMemberBinding="{Binding Path=Owner.Name}" />-->
                     <GridViewColumn Width="Auto" Header="Kund" DisplayMemberBinding="{Binding Path=Customer.Name}" />
