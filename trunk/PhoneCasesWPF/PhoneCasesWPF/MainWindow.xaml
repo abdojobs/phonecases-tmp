@@ -1,7 +1,7 @@
-﻿<Window x:Class="PhoneCasesWPF.MainWindow"
+﻿<Window x:Class="PhoneCases.WPFGUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:PhoneCasesWPF"
+        xmlns:local="clr-namespace:PhoneCases.WPFGUI"
         xml:lang="sv-SE"
         Title="MainWindow" Height="600" Width="1000" MinWidth="1000" MinHeight="600" Name="TheMainWindow">
 
