@@ -13,14 +13,16 @@ namespace PhoneCases.Server
         public delegate void IncomingCallHandler(string callerNumber, string ownerNumber, string time);
         public delegate void AnsweredCallHandler(object Params);
         public delegate void EndOfCallHandler(object Params);
+        public delegate void CaseCreatedDelegate(string userId);
 
+        
 
         public event PhonePairRequestHandler PhonePairRequest;
         public event PcPairRequestHandler PcPairRequest;
         public event IncomingCallHandler IncomingCall;
         public event AnsweredCallHandler AnsweredCall;
         public event EndOfCallHandler EndOfCall;
-
+        public event CaseCreatedDelegate CaseCreated;
 
         public Parser()
         {
@@ -51,6 +53,11 @@ namespace PhoneCases.Server
         {
             if (EndOfCall != null)
                 EndOfCall(Params);
+        }
+        protected void OnCaseCreated(string caseId)
+        {
+            if (CaseCreated != null)
+                CaseCreated(caseId);
         }
 
         //MESSAGE PARSER -- Decides what to do with a message
