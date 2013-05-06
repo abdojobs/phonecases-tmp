@@ -2,6 +2,13 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneCasesWPF", "PhoneCasesWPF\PhoneCasesWPF.csproj", "{5C30B547-9D21-4196-807F-753AD5BB8DFE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6861E56C-4553-4361-93BA-F958958E8682} = {6861E56C-4553-4361-93BA-F958958E8682}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneCasesServer", "PhoneCasesServer\PhoneCasesServer.csproj", "{D2FE0B64-00C0-4A55-A7E2-4C32C54DC08A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneCasesDB", "PhoneCasesDB\PhoneCasesDB.csproj", "{6861E56C-4553-4361-93BA-F958958E8682}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +20,14 @@ Global
 		{5C30B547-9D21-4196-807F-753AD5BB8DFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C30B547-9D21-4196-807F-753AD5BB8DFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C30B547-9D21-4196-807F-753AD5BB8DFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2FE0B64-00C0-4A55-A7E2-4C32C54DC08A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2FE0B64-00C0-4A55-A7E2-4C32C54DC08A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2FE0B64-00C0-4A55-A7E2-4C32C54DC08A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2FE0B64-00C0-4A55-A7E2-4C32C54DC08A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6861E56C-4553-4361-93BA-F958958E8682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6861E56C-4553-4361-93BA-F958958E8682}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6861E56C-4553-4361-93BA-F958958E8682}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6861E56C-4553-4361-93BA-F958958E8682}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

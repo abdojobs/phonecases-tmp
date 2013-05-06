@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhoneCases.WPFGUI
+namespace PhoneCases.DB
 {
     public static class ModelContainerHolder
     {

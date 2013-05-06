@@ -7,14 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PhoneCases.WPFGUI
+namespace PhoneCases.DB
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Tags
+    public partial class Companies
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int LocationId { get; set; }
+        public int CompanyTypesId { get; set; }
+    
+        public virtual Locations Location { get; set; }
+        public virtual CompanyTypes CompanyType { get; set; }
     }
 }

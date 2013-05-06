@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PhoneCases.WPFGUI
+namespace PhoneCases.DB
 {
     using System;
     using System.Collections.Generic;
