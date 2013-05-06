@@ -169,7 +169,8 @@ namespace PhoneCases.WPFGUI
             MultiFilter filter = new MultiFilter();
 
             filter.AddFilter(ActiveFilter);
-            filter.AddFilter(PrioFilter);
+            //filter.AddFilter(PrioFilter);
+            
 
             view.Filter = new Predicate<object>(filter.Filter);
 
@@ -181,18 +182,18 @@ namespace PhoneCases.WPFGUI
                 return false;
 
             // [J]
-            //Resultat innehåller aktiva
+            //Resultat innehåller borttagna
             if (ShowDeleted.IsChecked == true)
                 return true;
 
             // [ ]
-            //Resultat innehåller inte aktiva
-            if (ShowDeleted.IsChecked == false && item.Active == false)
+            //Resultat innehåller inte borttagna
+            if (ShowDeleted.IsChecked == false && item.Active == true)
                 return true;
 
             // [O]
-            //Resultat innehåller endast aktiva
-            if (ShowDeleted.IsChecked == null && item.Active == true)
+            //Resultat innehåller endast borttagna
+            if (ShowDeleted.IsChecked == null && item.Active == false)
                 return true;
             
             return false;
