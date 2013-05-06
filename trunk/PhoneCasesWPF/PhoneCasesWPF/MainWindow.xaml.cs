@@ -16,6 +16,11 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Data.Entity;
 
+using System.Timers;
+
+
+using model = PhoneCasesWPF.ModelContainerHolder;
+
 namespace PhoneCasesWPF
 {
     /// <summary>
@@ -26,18 +31,20 @@ namespace PhoneCasesWPF
 
     public partial class MainWindow : Window
     {
-        private ModelContainer m_mc = new ModelContainer();
         //public ModelContainer Mc { get { return m_mc; } set { m_mc = value; } } 
-
         public MainWindow()
         {
             InitializeComponent();
 
+
+            Timer updateTimer = new Timer(20*1000);
+            updateTimer.Elapsed += new ElapsedEventHandler(UpdateCasesTimerHandler);
+            updateTimer.Enabled = true;
             
             InitBindings();
-
-
-
+            FilterMainListView();
+            
+            
 
             //m_mc.Users.Add(new Users() { Name = "Tommy", PhoneNumber = "0734186405" });            
             //m_mc.Users.Add(new Users() { Name = "Pelle", PhoneNumber = "0734186415" });
@@ -64,38 +71,185 @@ namespace PhoneCasesWPF
         private void InitBindings()
         {
             //Command bindings
-            this.CommandBindings.Add(new CommandBinding(PCCommands.OpenCaseWindow, OpenCaseWindow));
+            this.CommandBindings.Add(new CommandBinding(PCCommands.OpenCaseWindow, OpenCaseWindowCommandHandler));
+            this.CommandBindings.Add(new CommandBinding(PCCommands.UpdateCases, UpdateCasesCommandHandler));
+            this.CommandBindings.Add(new CommandBinding(PCCommands.DeleteCase, DeleteCaseCommandHandler));
+            this.CommandBindings.Add(new CommandBinding(PCCommands.ApplyFilters, ApplyFiltersCommandHandler));
+            this.CommandBindings.Add(new CommandBinding(PCCommands.ClearFilters, ClearFiltersCommandHandler));
            
+            this.InputBindings.Add(new InputBinding(PCCommands.UpdateCases,new KeyGesture(Key.F5)));
             //Data bindings
             //var UsrList = m_mc.Users.Where(p => p.Name == "Tommy").Select(p=> p.Name).ToList();
             //TheMainWindow.DataContext = m_mc.Users;
 
-            m_mc.Cases.Load();
+            model.Model.Cases.Load();
+
+            //MainListView.AddHandler(,)
+            MainListView.MouseDoubleClick += OpenCaseWindowClickHandler;
             
-            MainListView.DataContext = m_mc.Cases.Local;
-            
-            MainListView.ItemsSource = m_mc.Cases.Local;
+
+            MainListView.DataContext = model.Model.Cases.Local;
+
+            MainListView.ItemsSource = model.Model.Cases.Local;
             
         }
 
-        public void OpenCaseWindow(object sender, ExecutedRoutedEventArgs e)
+        public void OpenCaseWindowCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            CaseWindow cw = new CaseWindow();
             if (e != null)
-                if(e.Parameter != null)
-                    cw.Title = e.Parameter.ToString();
+                if (e.Parameter != null)
+                    OpenCaseWindow((Cases)e.Parameter);
+        }
+
+        public void OpenCaseWindowClickHandler(object sender, RoutedEventArgs e)
+        {
+            OpenCaseWindow(((Cases)((ListView)e.Source).SelectedItem));
+        }
+        public void OpenCaseWindow(Cases Case)
+        {
+            CaseWindow cw = new CaseWindow(Case);
             cw.Show();
         }
+        private void UpdateCasesTimerHandler(object sender, ElapsedEventArgs e)
+        {
+            UpdateCases();
+        }
+        private void UpdateCasesCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            UpdateCases();
+        }
+        private void UpdateCases()
+        {
+            model.UpdateModel();
+            model.Model.Cases.Load();
+            MainListView.ItemsSource = model.Model.Cases.Local;
+            FilterMainListView();
+        }
+        private void DeleteCaseCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            DeleteCase((Cases)((ListView)e.Source).SelectedItem);
+        }
+        private void DeleteCase(Cases pCase)
+        {
+            pCase.Active = false;
+            model.Model.SaveChanges();
+            UpdateCases();
+        }
+
+
+        //filters
+        private void ApplyFiltersCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            FilterMainListView();
+        }
+        private void ClearFiltersCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            FilterMainListView();
+        }
+        private void FilterMainListView()
+        {
+            
+            ICollectionView view = CollectionViewSource.GetDefaultView(MainListView.ItemsSource);
+            MultiFilter filter = new MultiFilter();
+
+            filter.AddFilter(ActiveFilter);
+            filter.AddFilter(PrioFilter);
+
+            view.Filter = new Predicate<object>(filter.Filter);
+
+        }     
+        private bool ActiveFilter(object obj)
+        {
+            Cases item = obj as Cases;
+            if (item == null)
+                return false;
+
+            // [J]
+            //Resultat innehåller aktiva
+            if (ShowDeleted.IsChecked == true)
+                return true;
+
+            // [ ]
+            //Resultat innehåller inte aktiva
+            if (ShowDeleted.IsChecked == false && item.Active == false)
+                return true;
+
+            // [O]
+            //Resultat innehåller endast aktiva
+            if (ShowDeleted.IsChecked == null && item.Active == true)
+                return true;
+            
+            return false;
+        }
+        private bool PrioFilter(object obj)
+        {
+            Cases item = obj as Cases;
+            if (item == null)
+                return false;
+
+            // [J]
+            //Resultat innehåller högprio
+            if (ShowPrio.IsChecked == true)
+                return true;
+
+            // [ ]
+            //Resultat innehåller inte högprio
+            if (ShowPrio.IsChecked == false && item.HighPrio == false)
+                return true;
+
+            // [O]
+            //Resultat innehåller endast högprio
+            if (ShowPrio.IsChecked == null && item.HighPrio == true)
+                return true;
+
+            
+
+            return false;
+        }
+
 
     }
     public static class PCCommands
     {
         private static readonly RoutedUICommand openCaseWindowCommand = new RoutedUICommand("Open Case Window", "OpenCaseWindow", typeof(PCCommands));
+        private static readonly RoutedUICommand updateCasesCommand = new RoutedUICommand("Update Cases", "UpdateCases", typeof(PCCommands));
+        private static readonly RoutedUICommand deleteCaseCommand = new RoutedUICommand("Delete Case", "DeleteCase", typeof(PCCommands));
+        private static readonly RoutedUICommand applyFiltersCommand = new RoutedUICommand("Apply Filters", "ApplyFilters", typeof(PCCommands));
+        private static readonly RoutedUICommand clearFiltersCommand = new RoutedUICommand("Clear Filters", "ClearFilters", typeof(PCCommands));
 
         public static RoutedUICommand OpenCaseWindow { get { return openCaseWindowCommand; } }
+        public static RoutedUICommand UpdateCases { get { return updateCasesCommand; } }
+        public static RoutedUICommand DeleteCase { get { return deleteCaseCommand; } }
+        public static RoutedUICommand ApplyFilters { get { return applyFiltersCommand; } }
+        public static RoutedUICommand ClearFilters { get { return clearFiltersCommand; } }
 
     }
 
+    public class MultiFilter
+    {
+        private List<Predicate<object>> m_filters = new List<Predicate<object>>();
+        public Predicate<object> Filter {get; set;}
+        public MultiFilter()
+        {
+            Filter = InternalFilter;
+        }
+        private bool InternalFilter(object obj)
+        {
+            foreach (var filter in m_filters)
+                if (!filter(obj))
+                    return false;
+            return true;
+        }
+        public void AddFilter(Predicate<object> filter)
+        {
+            m_filters.Add(filter);
+        }
+        public void RemoveFilter(Predicate<object> filter)
+        {
+            if (m_filters.Contains(filter))
+                m_filters.Remove(filter);
+        }  
 
+    }
    
 }
