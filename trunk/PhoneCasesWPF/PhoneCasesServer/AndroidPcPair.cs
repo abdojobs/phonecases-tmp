@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace PhoneCases.Server
 {
-    public class Transmitter
+    public class AndroidPcPair
     {
-        public Transmitter()
+        private Client m_androidClient;
+        private Client m_pcClient;
+
+        public AndroidPcPair(Client android, Client pc)
         {
 
-        }
-        public void Send(string data, Client to)
-        {
-        
         }
     }
 }

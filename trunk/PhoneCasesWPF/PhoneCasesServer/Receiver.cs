@@ -26,6 +26,9 @@ namespace PhoneCases.Server
         private volatile bool m_requestStop = false;
         private Parser m_parser;
 
+        public Parser Parser { get { return m_parser; } set { m_parser = value; } }
+
+
         public Receiver(Parser parser, int port = 21337)
         {
             m_listenPort = port;
