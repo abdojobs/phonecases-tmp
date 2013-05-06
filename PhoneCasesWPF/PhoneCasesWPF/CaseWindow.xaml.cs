@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.ComponentModel;
+
+
+using model = PhoneCasesWPF.ModelContainerHolder;
 
 namespace PhoneCasesWPF
 {
@@ -19,9 +23,35 @@ namespace PhoneCasesWPF
     /// </summary>
     public partial class CaseWindow : Window
     {
-        public CaseWindow()
+        private Cases m_case;
+        public Cases Case { get { return m_case; } set { m_case = value; } }
+        public CaseWindow(Cases pCase)
         {
             InitializeComponent();
+            m_case = pCase;
+            this.Title = pCase.Id.ToString() + " - " + pCase.Customer.Name;
+            InitBindings();
+        }
+        private void InitBindings()
+        {
+            //Command bindings
+            this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Save, SaveChangesCommandHandler));
+
+            this.InputBindings.Add(new InputBinding(ApplicationCommands.Save, new KeyGesture(Key.S,ModifierKeys.Control)));
+
+            this.DataContext = m_case;
+        }
+        private void SaveChangesCommandHandler(object sender, RoutedEventArgs e)
+        {
+            SaveChanges();
+        }
+        private void SaveChanges()
+        {
+            model.Model.SaveChanges();
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            SaveChanges();
         }
     }
 }
