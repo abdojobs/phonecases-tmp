@@ -27,7 +27,6 @@ namespace PhoneCases.Server
                 ASCIIEncoding encoder = new ASCIIEncoding();
                 message = encoder.GetBytes(data);
                 m_networkStream.Write(message, 0, 4096);
-
                 m_networkStream.Close();
                 m_tcpClient.Close();
             }
