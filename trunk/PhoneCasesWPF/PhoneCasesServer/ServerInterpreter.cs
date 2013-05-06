@@ -17,11 +17,38 @@ namespace PhoneCases.Server
             m_receiver.Parser.PcPairRequest += PcPairRequest;
         }
 
-        void PhonePairRequest(string ip, string port, string phonenumber)
+        protected void IncomingCall(string callerNumber, string ownerNumber, string time)
+        {
+            Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == ownerNumber).First();
+            if (usr == null)
+                throw new Exception("Couldnt match number with owner"); //Better exception
+
+            //Create new case
+            int newCaseID = ModelContainerHolder.NewCase(callerNumber, usr.Id, DateTime.Parse(time));
+
+            //Notify PC
+            AndroidPcPair pair = new AndroidPcPair();
+            if (m_pairMap.TryGetValue(usr.Id, out pair))
+            {
+                if (pair.Android == null)
+                    throw new Exception("Not paired with phone");
+                if (pair.Pc != null)
+                {
+                    m_transmitter.Send("00|"+newCaseID, pair.Pc); //Send message to PC.
+                }
+                else
+                    throw new Exception("Not paired with PC."); 
+            }
+            else
+                throw new Exception("Not paired with phone");
+
+        }
+
+        private void PhonePairRequest(string ip, string port, string phonenumber)
         {
             Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == phonenumber).First();
             if (usr == null)
-                throw new Exception(); //Better exception
+                throw new Exception("Couldnt match number with owner"); //Better exception
 
             AndroidPcPair pair = new AndroidPcPair();
             if (m_pairMap.TryGetValue(usr.Id, out pair))
@@ -33,7 +60,7 @@ namespace PhoneCases.Server
             }
      
         }
-        void PcPairRequest(string ip, string port, string userId)
+        private void PcPairRequest(string ip, string port, string userId)
         {
 
             AndroidPcPair pair = new AndroidPcPair();

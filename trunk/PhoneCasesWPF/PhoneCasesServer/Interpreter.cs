@@ -19,13 +19,11 @@ namespace PhoneCases.Server
         public void StartReceiving()
         {
             m_receiver.Start();
-            m_receiver.Parser.AnsweredCall += AnsweredCall;
+            m_receiver.Parser.IncomingCall += IncomingCall;
         }
 
-        void AnsweredCall(object Params)
-        {
- 	        throw new NotImplementedException();
-        }
+        protected virtual void IncomingCall(string callerNumber, string ownerNumber, string time);
+
         public void Send(string data, Client to)
         {
             m_transmitter.Send(data, to);
