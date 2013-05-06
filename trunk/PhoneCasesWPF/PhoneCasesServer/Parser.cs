@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PhoneCases.Server
 {
-    class Parser
+    public class Parser
     {
 
         public delegate void IncomingCallHandler(string callerNumber, string ownerNumber, string time);
