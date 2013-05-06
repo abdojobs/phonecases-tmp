@@ -13,8 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
 
-
-using model = PhoneCases.WPFGUI.ModelContainerHolder;
+using PhoneCases.DB;
+using model = PhoneCases.DB.ModelContainerHolder;
 
 namespace PhoneCases.WPFGUI
 {

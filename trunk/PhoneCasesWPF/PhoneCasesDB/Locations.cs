@@ -7,15 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PhoneCases.WPFGUI
+namespace PhoneCases.DB
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class Locations
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string PhoneNumber { get; set; }
     }
 }

@@ -18,8 +18,8 @@ using System.Data.Entity;
 
 using System.Timers;
 
-
-using model = PhoneCases.WPFGUI.ModelContainerHolder;
+using PhoneCases.DB;
+using model = PhoneCases.DB.ModelContainerHolder;
 
 namespace PhoneCases.WPFGUI
 {
