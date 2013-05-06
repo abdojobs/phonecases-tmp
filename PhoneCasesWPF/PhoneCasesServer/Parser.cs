@@ -26,6 +26,33 @@ namespace PhoneCases.Server
         {
 
         }
+
+        protected void OnPhonePairRequest(string ip, string port, string phoneNumber)
+        {
+            if(PhonePairRequest!=null)
+                PhonePairRequest(ip, port, phoneNumber);
+        }
+        protected void OnPcPairRequest(string ip, string port, string userId)
+        {
+            if (PcPairRequest != null)
+                PcPairRequest(ip, port, userId);
+        }
+        protected void OnIncomingCall(string callerNumber, string ownerNumber, string time)
+        {
+            if (IncomingCall!=null)
+                IncomingCall(callerNumber, ownerNumber, time);
+        }
+        protected void OnAnsweredCall(object Params)
+        {
+            if (AnsweredCall != null)
+                AnsweredCall(Params);
+        }
+        protected void OnEndOfCall(object Params)
+        {
+            if (EndOfCall != null)
+                EndOfCall(Params);
+        }
+
         //MESSAGE PARSER -- Decides what to do with a message
         public virtual void ParseMessage(string message)
         {
@@ -41,15 +68,13 @@ namespace PhoneCases.Server
                         if (strings.Length == 4)
                         {
                             //1 = ip, 2= port, 3 = phonenumber
-                            if (PhonePairRequest != null)
-                                PhonePairRequest(strings[1], strings[2], strings[3]);
+                            OnPhonePairRequest(strings[1], strings[2], strings[3]);
                         }
                         break;
                     case "98":
                         if (strings.Length == 4)
                         {
-                            if (PcPairRequest != null)
-                                PcPairRequest(strings[1], strings[2], strings[3]);
+                            OnPcPairRequest(strings[1], strings[2], strings[3]);
                         }
                         break;
                     //New Incoming Call
@@ -57,24 +82,21 @@ namespace PhoneCases.Server
                         if (strings.Length == 4)
                         {
                             //change to Choose to answer or decline
-                            if(IncomingCall!=null)
-                                IncomingCall(strings[1], strings[2], strings[3]);
+                            OnIncomingCall(strings[1], strings[2], strings[3]);
                         }
                         break;
                     //Answered Incoming Call
                     case "01":
                         if (true)
                         {
-                            if(AnsweredCall!=null)
-                                AnsweredCall(strings);
+                            OnAnsweredCall(strings);
                         }
                         break;
                     //End of Incoming Call
                     case "02":
                         if (true)
                         {
-                            if(EndOfCall!=null)
-                                EndOfCall(strings);
+                            OnEndOfCall(strings);
                         }
                         break;
                 }

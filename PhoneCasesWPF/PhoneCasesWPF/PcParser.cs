@@ -9,6 +9,15 @@ namespace PhoneCases.WPFGUI
 {
     class PcParser : Parser
     {
+        public delegate void CaseCreatedDelegate(string userId);
+
+        public event CaseCreatedDelegate CaseCreated;
+
+        private void OnCaseCreated(string userId)
+        {
+            if (CaseCreated != null)
+                CaseCreated(userId);
+        }
         public override void ParseMessage(string message)
         {
             if (message != "" || message != null)
@@ -24,24 +33,21 @@ namespace PhoneCases.WPFGUI
                         if (strings.Length == 2)
                         {
                             //1 = CaseID
-                            if (IncomingCall != null)
-                                IncomingCall(strings[1]);
+                            OnCaseCreated(strings[1]);
                         }
                         break;
                     //Answered Incoming Call
                     case "01":
                         if (true)
                         {
-                            if (AnsweredCall != null)
-                                AnsweredCall(strings);
+                            OnAnsweredCall(strings);
                         }
                         break;
                     //End of Incoming Call
                     case "02":
                         if (true)
                         {
-                            if (EndOfCall != null)
-                                EndOfCall(strings);
+                            OnEndOfCall(strings);
                         }
                         break;
                 }
