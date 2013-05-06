@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PhoneCasesWPF
+namespace PhoneCases.WPFGUI
 {
     using System;
     using System.Data.Entity;

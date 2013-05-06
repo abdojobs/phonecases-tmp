@@ -14,9 +14,9 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 
 
-using model = PhoneCasesWPF.ModelContainerHolder;
+using model = PhoneCases.WPFGUI.ModelContainerHolder;
 
-namespace PhoneCasesWPF
+namespace PhoneCases.WPFGUI
 {
     /// <summary>
     /// Interaction logic for CaseWindow.xaml

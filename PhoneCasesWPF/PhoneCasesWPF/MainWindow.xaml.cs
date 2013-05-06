@@ -19,9 +19,9 @@ using System.Data.Entity;
 using System.Timers;
 
 
-using model = PhoneCasesWPF.ModelContainerHolder;
+using model = PhoneCases.WPFGUI.ModelContainerHolder;
 
-namespace PhoneCasesWPF
+namespace PhoneCases.WPFGUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

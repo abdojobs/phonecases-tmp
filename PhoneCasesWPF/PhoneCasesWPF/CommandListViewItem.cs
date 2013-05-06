@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace PhoneCasesWPF
+namespace PhoneCases.WPFGUI
 {
 
     public class CommandListViewItem : ListViewItem
