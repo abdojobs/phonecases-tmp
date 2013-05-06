@@ -122,13 +122,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\Cases.datasource" />
-    <None Include="Properties\DataSources\CaseTags.datasource" />
-    <None Include="Properties\DataSources\Companies.datasource" />
-    <None Include="Properties\DataSources\Customers.datasource" />
-    <None Include="Properties\DataSources\Locations.datasource" />
-    <None Include="Properties\DataSources\Tags.datasource" />
-    <None Include="Properties\DataSources\Users.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
