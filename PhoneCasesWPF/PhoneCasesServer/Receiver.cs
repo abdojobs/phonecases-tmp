@@ -17,7 +17,7 @@ using PhoneCases.DB;
 
 namespace PhoneCases.Server
 {
-    public class Server
+    public class Receiver
     {
         private int m_listenPort; //Port som TcpListener ska lyssna på
         private TcpListener m_listener; //Lyssnar efter TCP klienter
@@ -26,14 +26,18 @@ namespace PhoneCases.Server
         private volatile bool m_requestStop = false;
         private Parser m_parser;
 
-        public Server(Parser parser, int port = 21337)
+        public Receiver(Parser parser, int port = 21337)
         {
             m_listenPort = port;
             m_listener = new TcpListener(IPAddress.Any, m_listenPort);
             m_listenThread = new Thread(new ThreadStart(Listen));
-            m_listenThread.Start();
             m_listenThread.Name = "ListenThread";
+
             m_parser = parser;
+        }
+        public void Start()
+        {
+            m_listenThread.Start();
         }
         public void Kill()
         {
@@ -98,18 +102,6 @@ namespace PhoneCases.Server
             }
 
             client.Close();
-        }
-
-       
-        private void CreateCase(string inNumber, string myNumber, string startTime)
-        {
-            inNumber = inNumber.Replace("-", "");
-            startTime = startTime.Replace("\n", "");
-            ModelContainerHolder.NewCase(inNumber, myNumber, startTime);
-        }
-        static void Main()
-        {
-            
         }
     }
 }
