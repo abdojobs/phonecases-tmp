@@ -12,6 +12,7 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 
 
+using PhoneCases.DB;
 
 
 namespace PhoneCases.Server
@@ -23,18 +24,16 @@ namespace PhoneCases.Server
         private Thread m_listenThread; //Tråd som skapar ny tråd för varje ny klient
         private static object m_lock = new object();
         private volatile bool m_requestStop = false;
+        private Parser m_parser;
 
-        public Server(int port = 21337)
+        public Server(Parser parser, int port = 21337)
         {
             m_listenPort = port;
             m_listener = new TcpListener(IPAddress.Any, m_listenPort);
             m_listenThread = new Thread(new ThreadStart(Listen));
             m_listenThread.Start();
             m_listenThread.Name = "ListenThread";
-        }
-        public void CreateTestCase()
-        {
-            //createCase("0531526116", "112", DateTime.Now.ToString());
+            m_parser = parser;
         }
         public void Kill()
         {
@@ -50,7 +49,7 @@ namespace PhoneCases.Server
 
             }
         }
-        private void Listen()
+        protected void Listen()
         {
             m_listener.Start();
             while (!m_requestStop)
@@ -63,7 +62,7 @@ namespace PhoneCases.Server
             m_listener.Stop();
             m_listenThread.Join();
         }
-        private void HandleCommunication(object p_client)
+        protected void HandleCommunication(object p_client)
         {
             TcpClient client = (TcpClient)p_client;
             
@@ -95,61 +94,18 @@ namespace PhoneCases.Server
                 }
 
                 string s = encoder.GetString(message).Remove(bytesRead);
-                parseMessage(s);
+                m_parser.ParseMessage(s);
             }
 
             client.Close();
         }
 
-        //MESSAGE PARSER -- Decides what to do with a message
-        private void parseMessage(string message)
-        {
-            if (message != "" || message != null)
-            {
-                Console.WriteLine(message);
-                string[] strings = message.Split('|');
-
-
-                switch (strings[0])
-                {
-                    //New Incoming Call
-                    case "00":
-                        if (strings.Length == 4)
-                        {
-                            //change to Choose to answer or decline
-                            createCase(strings[1], strings[2], strings[3]);
-                            Console.WriteLine("00");
-                        }
-                        break;
-                    //Answered Incoming Call
-                    case "01":
-                        if (true)
-                        {
-                            //Create case
-                            Console.WriteLine("01");
-                        }
-                        break;
-                    //End of Incoming Call
-                    case "02":
-                        if(true)
-                        {
-                            //Update endtime
-
-                            Console.WriteLine("02");
-                        }
-                        break;
-                }
-            }
-        }
-        private void createCase(string inNumber, string myNumber, string startTime)
+       
+        private void CreateCase(string inNumber, string myNumber, string startTime)
         {
             inNumber = inNumber.Replace("-", "");
             startTime = startTime.Replace("\n", "");
-            NewCase(inNumber, myNumber, startTime);
-        }
-        private void NewCase(string inNumber, string ownerNumber, string startTime)
-        {
-            
+            ModelContainerHolder.NewCase(inNumber, myNumber, startTime);
         }
         static void Main()
         {
