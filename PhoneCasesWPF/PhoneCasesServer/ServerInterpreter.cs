@@ -17,7 +17,7 @@ namespace PhoneCases.Server
             m_receiver.Parser.PcPairRequest += PcPairRequest;
         }
 
-        protected void IncomingCall(string callerNumber, string ownerNumber, string time)
+        protected override void IncomingCall(string callerNumber, string ownerNumber, string time)
         {
             Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == ownerNumber).First();
             if (usr == null)

@@ -10,7 +10,7 @@ namespace PhoneCases.Server
     public class Transmitter
     {
         private TcpClient m_tcpClient = new TcpClient();
-        private NetworkStream m_networkStream = new NetworkStream();
+        private NetworkStream m_networkStream;
 
         public Transmitter()
         {

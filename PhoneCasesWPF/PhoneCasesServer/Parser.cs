@@ -27,7 +27,7 @@ namespace PhoneCases.Server
 
         }
         //MESSAGE PARSER -- Decides what to do with a message
-        public void ParseMessage(string message)
+        public virtual void ParseMessage(string message)
         {
             if (message != "" || message != null)
             {
@@ -40,6 +40,7 @@ namespace PhoneCases.Server
                     case "99":
                         if (strings.Length == 4)
                         {
+                            //1 = ip, 2= port, 3 = phonenumber
                             if (PhonePairRequest != null)
                                 PhonePairRequest(strings[1], strings[2], strings[3]);
                         }
