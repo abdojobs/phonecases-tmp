@@ -7,17 +7,9 @@ using PhoneCases.Server;
 
 namespace PhoneCases.WPFGUI
 {
-    class PcParser : Parser
+    public class PcParser : Parser
     {
-        public delegate void CaseCreatedDelegate(string userId);
 
-        public event CaseCreatedDelegate CaseCreated;
-
-        private void OnCaseCreated(string userId)
-        {
-            if (CaseCreated != null)
-                CaseCreated(userId);
-        }
         public override void ParseMessage(string message)
         {
             if (message != "" || message != null)

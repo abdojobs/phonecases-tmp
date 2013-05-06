@@ -19,6 +19,7 @@ using System.Data.Entity;
 using System.Timers;
 
 using PhoneCases.DB;
+using PhoneCases.Server;
 using model = PhoneCases.DB.ModelContainerHolder;
 
 namespace PhoneCases.WPFGUI
@@ -32,6 +33,9 @@ namespace PhoneCases.WPFGUI
     public partial class MainWindow : Window
     {
         //public ModelContainer Mc { get { return m_mc; } set { m_mc = value; } } 
+
+        public PcInterpreter m_interpreter;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -42,6 +46,9 @@ namespace PhoneCases.WPFGUI
             updateTimer.Enabled = true;
             
             InitBindings();
+
+            InitServerConnection();
+
             FilterMainListView();
             
             
@@ -66,6 +73,15 @@ namespace PhoneCases.WPFGUI
             //m_mc.Cases.Add(new Cases() { UserId = 1, CustomersId = 3, StartTime = DateTime.Now });
 
             //m_mc.SaveChanges();
+
+        }
+
+        private void InitServerConnection()
+        {
+            m_interpreter = new PcInterpreter(new Receiver(new PcParser(), 21336), new Transmitter());
+            //Do this with dialog
+            m_interpreter.Init(1);
+            //m_interpreter.StartReceiving();
 
         }
         private void InitBindings()
