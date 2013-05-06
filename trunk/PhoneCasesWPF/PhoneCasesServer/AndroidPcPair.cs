@@ -11,9 +11,20 @@ namespace PhoneCases.Server
         private Client m_androidClient;
         private Client m_pcClient;
 
-        public AndroidPcPair(Client android, Client pc)
+        public Client Android { get { return m_androidClient; } set { m_androidClient = value; } }
+        public Client Pc { get { return m_pcClient; } set { m_pcClient = value; } }
+
+        public AndroidPcPair()
         {
 
         }
+        public AndroidPcPair(Client android, Client pc)
+        {
+            m_androidClient = android;
+            m_pcClient = pc;
+        }
+
+
+
     }
 }

@@ -8,11 +8,15 @@ namespace PhoneCases.Server
 {
     public class Parser
     {
-
+        public delegate void PhonePairRequestHandler(string ip, string port, string phoneNumber);
+        public delegate void PcPairRequestHandler(string ip, string port, string userId);
         public delegate void IncomingCallHandler(string callerNumber, string ownerNumber, string time);
         public delegate void AnsweredCallHandler(object Params);
         public delegate void EndOfCallHandler(object Params);
 
+
+        public event PhonePairRequestHandler PhonePairRequest;
+        public event PcPairRequestHandler PcPairRequest;
         public event IncomingCallHandler IncomingCall;
         public event AnsweredCallHandler AnsweredCall;
         public event EndOfCallHandler EndOfCall;
@@ -33,6 +37,20 @@ namespace PhoneCases.Server
 
                 switch (strings[0])
                 {
+                    case "99":
+                        if (strings.Length == 4)
+                        {
+                            if (PhonePairRequest != null)
+                                PhonePairRequest(strings[1], strings[2], strings[3]);
+                        }
+                        break;
+                    case "98":
+                        if (strings.Length == 4)
+                        {
+                            if (PcPairRequest != null)
+                                PcPairRequest(strings[1], strings[2], strings[3]);
+                        }
+                        break;
                     //New Incoming Call
                     case "00":
                         if (strings.Length == 4)
@@ -46,14 +64,16 @@ namespace PhoneCases.Server
                     case "01":
                         if (true)
                         {
-                            AnsweredCall(strings);
+                            if(AnsweredCall!=null)
+                                AnsweredCall(strings);
                         }
                         break;
                     //End of Incoming Call
                     case "02":
                         if (true)
                         {
-                            EndOfCall(strings);
+                            if(EndOfCall!=null)
+                                EndOfCall(strings);
                         }
                         break;
                 }
