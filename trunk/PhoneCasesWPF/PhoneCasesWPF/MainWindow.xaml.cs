@@ -202,6 +202,18 @@ namespace PhoneCases.WPFGUI
             view.Filter = new Predicate<object>(filter.Filter);
 
         }
+        private bool CustomerFilter(object obj)
+        {
+            Cases item = obj as Cases;
+            if (item == null)
+                return false;
+
+            if (item.Customer.Name.ToLower() == CustomerTextBox.Text.ToLower())
+                return true;
+
+
+            return false;
+        }
         private bool ClosedFilter(object obj)
         {
             Cases item = obj as Cases;
