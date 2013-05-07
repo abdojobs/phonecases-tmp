@@ -7,7 +7,7 @@
     <ProjectGuid>{6861E56C-4553-4361-93BA-F958958E8682}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PhoneCasesDB</RootNamespace>
+    <RootNamespace>PhoneCases.DB</RootNamespace>
     <AssemblyName>PhoneCasesDB</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -24,7 +24,7 @@ namespace PhoneCases.Server
             {
                 Cases Case = ModelContainerHolder.Model.Cases.Find(int.Parse(caseId));
                 Case.EndTime = DateTime.Parse(time);
-                //Case.TotalTime = (Case.StartTime - Case.EndTime).Seconds; // Duration in seconds
+                Case.TotalTime = ((TimeSpan?)(((DateTime?)Case.StartTime) - Case.EndTime)).Value.Seconds; // Duration in seconds
                 ModelContainerHolder.Model.SaveChanges();
             }
             catch (System.Exception ex)
