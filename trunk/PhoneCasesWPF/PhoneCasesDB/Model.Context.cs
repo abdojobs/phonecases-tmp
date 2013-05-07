@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PhoneCases.DB
+namespace PhoneCasesDB
 {
     using System;
     using System.Data.Entity;

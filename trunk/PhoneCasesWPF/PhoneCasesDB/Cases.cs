@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PhoneCases.DB
+namespace PhoneCasesDB
 {
     using System;
     using System.Collections.Generic;
@@ -27,7 +27,7 @@ namespace PhoneCases.DB
         public string Info { get; set; }
         public System.DateTime StartTime { get; set; }
         public Nullable<System.DateTime> EndTime { get; set; }
-        public Nullable<System.DateTime> TotalTime { get; set; }
+        public Nullable<int> TotalTime { get; set; }
         public Nullable<System.DateTime> CloseTime { get; set; }
         public bool Reconnect { get; set; }
         public bool HighPrio { get; set; }
