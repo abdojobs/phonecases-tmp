@@ -193,14 +193,67 @@ namespace PhoneCases.WPFGUI
             ICollectionView view = CollectionViewSource.GetDefaultView(MainListView.ItemsSource);
             MultiFilter filter = new MultiFilter();
 
+            //Checkboxfilters
             filter.AddFilter(ActiveFilter);
             filter.AddFilter(PrioFilter);
             filter.AddFilter(ReconnectFilter);
             filter.AddFilter(ClosedFilter);
+
+            //TextBoxFilters
+            filter.AddFilter(CustomerFilter);
+            filter.AddFilter(CompanyFilter);
+            filter.AddFilter(PhoneFilter);
+            filter.AddFilter(CaseNumberFilter);
+            filter.AddFilter(LocationFilter);
+            filter.AddFilter(InfoTextFilter);
             
 
             view.Filter = new Predicate<object>(filter.Filter);
 
+        }
+
+        private bool InfoTextFilter(object obj)
+        {
+            Cases item = obj as Cases;
+            if (item == null)
+                return false;
+
+            return TextSearchFilter(item.Info, TextTextBox.Text);
+        }
+        private bool LocationFilter(object obj)
+        {
+            Cases item = obj as Cases;
+            if (item == null)
+                return false;
+
+            return TextSearchFilter(item.Customer.Company.Location.Name, LocationTextBox.Text);
+        }
+        private bool CaseNumberFilter(object obj)
+        {
+            Cases item = obj as Cases;
+            if (item == null)
+                return false;
+
+            if (item.Id.ToString().IndexOf(CaseNumberTextBox.Text) > -1)
+                return true;
+
+            return false;
+        }
+        private bool PhoneFilter(object obj)
+        {
+            Cases item = obj as Cases;
+            if (item == null)
+                return false;
+
+            return TextSearchFilter(item.Customer.PhoneNumber, PhoneTextBox.Text);
+        }
+        private bool CompanyFilter(object obj)
+        {
+            Cases item = obj as Cases;
+            if (item == null)
+                return false;
+
+            return TextSearchFilter(item.Customer.Company.Name, CompanyTextBox.Text);
         }
         private bool CustomerFilter(object obj)
         {
@@ -208,9 +261,15 @@ namespace PhoneCases.WPFGUI
             if (item == null)
                 return false;
 
-            if (item.Customer.Name.ToLower() == CustomerTextBox.Text.ToLower())
+            return TextSearchFilter(item.Customer.Name, CustomerTextBox.Text);
+        }
+        private bool TextSearchFilter(String item, String textBoxText)
+        {
+            if (textBoxText == "")
                 return true;
 
+            if (item.ToLower().IndexOf(textBoxText.ToLower()) > -1)
+                return true;
 
             return false;
         }
