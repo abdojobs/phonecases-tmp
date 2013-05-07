@@ -13,7 +13,13 @@ namespace PhoneCases.Server.Service
 
         static void Main(string[] args)
         {
-            Transmitter t = new Transmitter();
+            Parser parser = new Parser();
+            Receiver receiver = new Receiver(parser);
+            Transmitter transmitter = new Transmitter();
+            ServerInterpreter interpreter = new ServerInterpreter(receiver,transmitter);
+
+            interpreter.StartReceiving();
+
         }
     }
 }
