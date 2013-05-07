@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneCasesServer", "PhoneCa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneCasesDB", "PhoneCasesDB\PhoneCasesDB.csproj", "{6861E56C-4553-4361-93BA-F958958E8682}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneCasesServerService", "PhoneCasesServerService\PhoneCasesServerService.csproj", "{2C594BD8-EDF3-42EB-82A4-922EB1299B7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{6861E56C-4553-4361-93BA-F958958E8682}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6861E56C-4553-4361-93BA-F958958E8682}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6861E56C-4553-4361-93BA-F958958E8682}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C594BD8-EDF3-42EB-82A4-922EB1299B7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C594BD8-EDF3-42EB-82A4-922EB1299B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C594BD8-EDF3-42EB-82A4-922EB1299B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C594BD8-EDF3-42EB-82A4-922EB1299B7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
