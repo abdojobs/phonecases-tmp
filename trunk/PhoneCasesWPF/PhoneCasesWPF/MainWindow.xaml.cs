@@ -85,7 +85,7 @@ namespace PhoneCases.WPFGUI
             
             m_interpreter.OnCaseCreated(OpenCaseWindow);
             //Do this with dialog
-            m_interpreter.Init(3); //CUrrently initiating with AndroidTest user.
+            m_interpreter.Init(4); //CUrrently initiating with AndroidTest user.
             
             //m_interpreter.StartReceiving();
 
