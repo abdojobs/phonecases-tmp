@@ -29,11 +29,12 @@ namespace PhoneCases.DB
         //Function should be placed on Cases
         public static int NewCase(string customerNumber,int ownerId, DateTime time)
         {
-            Customers customer = Model.Customers.Where(a => a.PhoneNumber == customerNumber).First();
-            Users owner = Model.Users.Find(ownerId);
-
-            if (customer != null)
+            try
             {
+                Customers customer = Model.Customers.Where(a => a.PhoneNumber == customerNumber).First();
+                Users owner = Model.Users.Find(ownerId);
+                if (customer == null)
+                    throw new Exception("Customer not found"); //Should notify pcuser and create new customer
                 if (owner != null)
                 {
                     try
@@ -54,8 +55,12 @@ namespace PhoneCases.DB
                 else
                     throw new Exception("Owner not found");
             }
-            else
-                throw new Exception("Couldnt find customer"); //Should notify pcuser and create new customer
+            catch (Exception e)
+            {
+                //Error..
+            }
+            
+
 
             return -1;
             

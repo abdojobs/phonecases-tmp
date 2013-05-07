@@ -15,41 +15,62 @@ namespace PhoneCases.Server
         {
             m_receiver.Parser.PhonePairRequest += PhonePairRequest;
             m_receiver.Parser.PcPairRequest += PcPairRequest;
+            m_receiver.Parser.EndOfCall += EndOfCall;
+        }
+
+        void EndOfCall(string ownerNumber, string caseId, string time)
+        {
+            try
+            {
+                Cases Case = ModelContainerHolder.Model.Cases.Find(int.Parse(caseId));
+                Case.EndTime = DateTime.Parse(time);
+                //Case.TotalTime = (Case.StartTime - Case.EndTime).Seconds; // Duration in seconds
+                ModelContainerHolder.Model.SaveChanges();
+            }
+            catch (System.Exception ex)
+            {
+            	
+            }
         }
 
         protected override void IncomingCall( string ownerNumber, string callerNumber, string time)
         {
-            Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == ownerNumber).First();
-            if (usr == null)
-                throw new Exception("Couldnt match number with owner"); //Better exception
-
-            //Create new case
-            int newCaseID = ModelContainerHolder.NewCase(callerNumber, usr.Id, DateTime.Parse(time));
-
-            //Notify PC
-            AndroidPcPair pair = new AndroidPcPair();
             try
             {
+                Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == ownerNumber).First();
+                if (usr == null)
+                    throw new Exception("Couldnt match number with owner"); //Better exception
+
+                //Create new case
+                int newCaseID = ModelContainerHolder.NewCase(callerNumber, usr.Id, DateTime.Parse(time));
+
+                //Notify PC
+                AndroidPcPair pair = new AndroidPcPair();
                 if (m_pairMap.TryGetValue(usr.Id, out pair))
                 {
-                    if (pair.Android == null)
+                    if (pair.Android != null)
+                    {
+                        m_transmitter.Send("00|" + newCaseID, pair.Android); //Send caseId to Phone.
+                    }
+                    else
                         throw new Exception("Not paired with phone");
+
                     if (pair.Pc != null)
                     {
-                        m_transmitter.Send("00|" + newCaseID, pair.Pc); //Send message to PC.
+                        m_transmitter.Send("00|" + newCaseID, pair.Pc); //Send caseId to PC.
                     }
                     else
                         throw new Exception("Not paired with PC.");
                 }
                 else
                     throw new Exception("Not paired with phone");
+            
             }
             catch (Exception e)
             {
                 //Error..
             }
         }
-
         private void PhonePairRequest(string phoneNumber, string port, string ip)
         {
             try

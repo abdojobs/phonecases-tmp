@@ -12,7 +12,7 @@ namespace PhoneCases.Server
         public delegate void PcPairRequestHandler(string ip, string port, string userId);
         public delegate void IncomingCallHandler(string ownerNumber, string callerNumber, string time);
         public delegate void AnsweredCallHandler(object Params);
-        public delegate void EndOfCallHandler(object Params);
+        public delegate void EndOfCallHandler(string ownerNumber, string caseId, string time);
         public delegate void CaseCreatedHandler(string userId);
 
         
@@ -49,10 +49,10 @@ namespace PhoneCases.Server
             if (AnsweredCall != null)
                 AnsweredCall(Params);
         }
-        protected void OnEndOfCall(object Params)
+        protected void OnEndOfCall(string ownerNumber, string caseId, string time)
         {
             if (EndOfCall != null)
-                EndOfCall(Params);
+                EndOfCall(ownerNumber,caseId, time);
         }
         protected void OnCaseCreated(string caseId)
         {
@@ -91,7 +91,6 @@ namespace PhoneCases.Server
                     case "00":
                         if (strings.Length == 4)
                         {
-                            //change to Choose to answer or decline
                             OnIncomingCall(strings[1], strings[2], strings[3]);
                         }
                         break;
@@ -104,9 +103,9 @@ namespace PhoneCases.Server
                         break;
                     //End of Incoming Call
                     case "02":
-                        if (true)
+                        if (strings.Length == 4)
                         {
-                            OnEndOfCall(strings);
+                            OnEndOfCall(strings[1],strings[2], strings[3]);
                         }
                         break;
                 }

@@ -35,13 +35,13 @@ namespace PhoneCases.WPFGUI
                             OnAnsweredCall(strings);
                         }
                         break;
-                    //End of Incoming Call
-                    case "02":
-                        if (true)
-                        {
-                            OnEndOfCall(strings);
-                        }
-                        break;
+                    ////End of Incoming Call
+                    //case "02":
+                    //    if (true)
+                    //    {
+                    //        OnEndOfCall(strings[]);
+                    //    }
+                    //    break;
                 }
             }
         }
