@@ -27,7 +27,6 @@ namespace PhoneCases.WPFGUI
         }
         private void PairWithServer()
         {
-                                    //Select from dialog
             Client server = new Client(LocalIPAddress(),(21337).ToString());
             m_transmitter.Send("98|"+m_ownerId,server);
         }

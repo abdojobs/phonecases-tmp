@@ -116,13 +116,13 @@ namespace PhoneCases.WPFGUI
                 if (e.Parameter != null)
                     OpenCaseWindow((Cases)e.Parameter);
         }
-
         public void OpenCaseWindowClickHandler(object sender, RoutedEventArgs e)
         {
             OpenCaseWindow(((Cases)((ListView)e.Source).SelectedItem));
         }
         public void OpenCaseWindow(Cases Case)
         {
+           
             CaseWindow cw = new CaseWindow(Case);
             cw.Show();
         }

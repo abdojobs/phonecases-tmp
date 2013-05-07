@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Sockets;
+//using System.IO;
 
 namespace PhoneCases.Server
 {
@@ -26,13 +27,14 @@ namespace PhoneCases.Server
                 byte[] message = new byte[4096];
                 ASCIIEncoding encoder = new ASCIIEncoding();
                 message = encoder.GetBytes(data);
-                m_networkStream.Write(message, 0, 4096);
+                m_networkStream.Write(message, 0, message.Length);
+                m_networkStream.Flush();
                 m_networkStream.Close();
                 m_tcpClient.Close();
             }
             catch (Exception e)
             {
-            	
+            	//Error..
             }
             
 

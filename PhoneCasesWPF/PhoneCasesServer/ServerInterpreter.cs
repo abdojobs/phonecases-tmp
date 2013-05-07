@@ -28,20 +28,26 @@ namespace PhoneCases.Server
 
             //Notify PC
             AndroidPcPair pair = new AndroidPcPair();
-            if (m_pairMap.TryGetValue(usr.Id, out pair))
+            try
             {
-                if (pair.Android == null)
-                    throw new Exception("Not paired with phone");
-                if (pair.Pc != null)
+                if (m_pairMap.TryGetValue(usr.Id, out pair))
                 {
-                    m_transmitter.Send("00|"+newCaseID, pair.Pc); //Send message to PC.
+                    if (pair.Android == null)
+                        throw new Exception("Not paired with phone");
+                    if (pair.Pc != null)
+                    {
+                        m_transmitter.Send("00|" + newCaseID, pair.Pc); //Send message to PC.
+                    }
+                    else
+                        throw new Exception("Not paired with PC.");
                 }
                 else
-                    throw new Exception("Not paired with PC."); 
+                    throw new Exception("Not paired with phone");
             }
-            else
-                throw new Exception("Not paired with phone");
-
+            catch (Exception e)
+            {
+                //Error..
+            }
         }
 
         private void PhonePairRequest(string ip, string port, string phonenumber)
@@ -64,6 +70,7 @@ namespace PhoneCases.Server
         {
 
             AndroidPcPair pair = new AndroidPcPair();
+            //IF(Det finns redan en mappning mot detta userid)
             if (m_pairMap.TryGetValue(int.Parse(userId), out pair))
                 pair.Pc = new Client(ip, port);
             else

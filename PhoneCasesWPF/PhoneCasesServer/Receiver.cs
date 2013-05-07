@@ -103,6 +103,13 @@ namespace PhoneCases.Server
                 }
 
                 string s = encoder.GetString(message).Remove(bytesRead);
+
+                //FULFIX tills det att jag hittar ett sätt att skicka med IP som parameter från androidclient.
+                string[] strings = s.Split('|');
+                if (strings[0] == "99")
+                    s += "|" + client.Client.RemoteEndPoint.ToString();
+                //End of FULFIX
+
                 m_parser.ParseMessage(s);
             }
 
