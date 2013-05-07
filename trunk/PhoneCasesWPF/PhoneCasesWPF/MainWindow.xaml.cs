@@ -178,7 +178,7 @@ namespace PhoneCases.WPFGUI
         }
 
 
-        //filters
+        //Filter-related
         private void ApplyFiltersCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             FilterMainListView();
@@ -212,6 +212,7 @@ namespace PhoneCases.WPFGUI
 
         }
 
+        //Filters
         private bool InfoTextFilter(object obj)
         {
             Cases item = obj as Cases;
