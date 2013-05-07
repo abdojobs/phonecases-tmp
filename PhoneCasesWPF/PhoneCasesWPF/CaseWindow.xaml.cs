@@ -36,8 +36,10 @@ namespace PhoneCases.WPFGUI
         {
             //Command bindings
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Save, SaveChangesCommandHandler));
+            this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, CloseCommandHandler));
 
             this.InputBindings.Add(new InputBinding(ApplicationCommands.Save, new KeyGesture(Key.S,ModifierKeys.Control)));
+            this.InputBindings.Add(new InputBinding(ApplicationCommands.Close, new KeyGesture(Key.Escape)));
 
             this.DataContext = m_case;
         }
@@ -45,13 +47,19 @@ namespace PhoneCases.WPFGUI
         {
             SaveChanges();
         }
+        private void CloseCommandHandler(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
         private void SaveChanges()
         {
             model.Model.SaveChanges();
         }
-        protected override void OnClosed(EventArgs e)
+        protected override void OnClosing(CancelEventArgs e)
         {
             SaveChanges();
+
+            base.OnClosing(e);
         }
     }
 }
