@@ -18,17 +18,23 @@ namespace PhoneCases.WPFGUI
 
         public PcInterpreter(Receiver receiver, Transmitter transmitter) : base(receiver, transmitter)
         {
+            //this.m_receiver.Parser.CaseCreated += OnCaseCreated;
+        }
 
+        public void OnCaseCreated(Parser.CaseCreatedHandler handler)
+        {
+            this.m_receiver.Parser.CaseCreated += handler;
         }
         public void Init(int ownerId)
         {
             m_ownerId = ownerId;
+            m_receiver.Start();
             PairWithServer();
         }
         private void PairWithServer()
         {
             Client server = new Client(LocalIPAddress(),(21337).ToString());
-            m_transmitter.Send("98|"+m_ownerId,server);
+            m_transmitter.Send("98|" + m_ownerId + "|" + LocalIPAddress() + "|" + m_receiver.ListeningPort, server);
         }
         private string LocalIPAddress()
         {
@@ -39,7 +45,7 @@ namespace PhoneCases.WPFGUI
             {
                 if (ip.AddressFamily == AddressFamily.InterNetwork)
                 {
-                    localIP = ip.ToString();
+                    return localIP = ip.ToString();
                 }
             }
             return localIP;

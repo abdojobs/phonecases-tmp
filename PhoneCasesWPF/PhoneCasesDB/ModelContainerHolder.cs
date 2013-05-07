@@ -39,6 +39,7 @@ namespace PhoneCases.DB
                     try
                     {
                         Cases entity = Model.Cases.Add(new Cases() { Owner = owner, Customer = customer, StartTime = time });
+                        Model.SaveChanges();
                         return entity.Id;
                     }
                     catch (InvalidCastException e)

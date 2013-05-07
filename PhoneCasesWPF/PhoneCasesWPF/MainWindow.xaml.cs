@@ -30,11 +30,14 @@ namespace PhoneCases.WPFGUI
     /// 
 
 
+
     public partial class MainWindow : Window
     {
         //public ModelContainer Mc { get { return m_mc; } set { m_mc = value; } } 
 
         public PcInterpreter m_interpreter;
+
+
 
         public MainWindow()
         {
@@ -78,9 +81,12 @@ namespace PhoneCases.WPFGUI
 
         private void InitServerConnection()
         {
-            m_interpreter = new PcInterpreter(new Receiver(new PcParser(), 21336), new Transmitter());
+            m_interpreter = new PcInterpreter(new Receiver(new PcParser(), 21339), new Transmitter());
+            
+            m_interpreter.OnCaseCreated(OpenCaseWindow);
             //Do this with dialog
-            m_interpreter.Init(1);
+            m_interpreter.Init(3); //CUrrently initiating with AndroidTest user.
+            
             //m_interpreter.StartReceiving();
 
         }
@@ -119,6 +125,24 @@ namespace PhoneCases.WPFGUI
         public void OpenCaseWindowClickHandler(object sender, RoutedEventArgs e)
         {
             OpenCaseWindow(((Cases)((ListView)e.Source).SelectedItem));
+        }
+        public void OpenCaseWindow(string caseId)
+        {
+            try
+            {
+                System.Windows.Application.Current.Dispatcher.Invoke((Action) delegate()
+                {
+                    Cases Case = ModelContainerHolder.Model.Cases.Find(int.Parse(caseId));
+                    OpenCaseWindow(Case);
+                }
+                );
+                //OpenCaseWindow(Case);
+            }
+            catch (System.Exception e)
+            {
+            	//Could not find case with caseid.
+            }
+            
         }
         public void OpenCaseWindow(Cases Case)
         {

@@ -22,7 +22,7 @@ namespace PhoneCases.Server
             m_receiver.Parser.IncomingCall += IncomingCall;
         }
 
-        protected virtual void IncomingCall(string callerNumber, string ownerNumber, string time)
+        protected virtual void IncomingCall(string ownerNumber, string callerNumber, string time)
         {
             throw new Exception();
         }
