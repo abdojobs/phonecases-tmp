@@ -8,12 +8,12 @@ namespace PhoneCases.Server
 {
     public class Parser
     {
-        public delegate void PhonePairRequestHandler(string ip, string port, string phoneNumber);
+        public delegate void PhonePairRequestHandler(string phoneNumber, string port, string ip);
         public delegate void PcPairRequestHandler(string ip, string port, string userId);
-        public delegate void IncomingCallHandler(string callerNumber, string ownerNumber, string time);
+        public delegate void IncomingCallHandler(string ownerNumber, string callerNumber, string time);
         public delegate void AnsweredCallHandler(object Params);
         public delegate void EndOfCallHandler(object Params);
-        public delegate void CaseCreatedDelegate(string userId);
+        public delegate void CaseCreatedHandler(string userId);
 
         
 
@@ -22,27 +22,27 @@ namespace PhoneCases.Server
         public event IncomingCallHandler IncomingCall;
         public event AnsweredCallHandler AnsweredCall;
         public event EndOfCallHandler EndOfCall;
-        public event CaseCreatedDelegate CaseCreated;
+        public event CaseCreatedHandler CaseCreated;
 
         public Parser()
         {
 
         }
 
-        protected void OnPhonePairRequest(string ip, string port, string phoneNumber)
+        protected void OnPhonePairRequest(string phoneNumber, string port, string ip)
         {
             if(PhonePairRequest!=null)
-                PhonePairRequest(ip, port, phoneNumber);
+                PhonePairRequest(phoneNumber, port, ip);
         }
-        protected void OnPcPairRequest(string ip, string port, string userId)
+        protected void OnPcPairRequest(string userId, string ip, string port)
         {
             if (PcPairRequest != null)
-                PcPairRequest(ip, port, userId);
+                PcPairRequest(userId, ip, port);
         }
-        protected void OnIncomingCall(string callerNumber, string ownerNumber, string time)
+        protected void OnIncomingCall(string ownerNumber, string callerNumber, string time)
         {
             if (IncomingCall!=null)
-                IncomingCall(callerNumber, ownerNumber, time);
+                IncomingCall(ownerNumber, callerNumber, time);
         }
         protected void OnAnsweredCall(object Params)
         {
@@ -66,7 +66,9 @@ namespace PhoneCases.Server
         {
             if (message != "" || message != null)
             {
+                message = message.Replace("\n", "");
                 Console.WriteLine(message);
+
                 string[] strings = message.Split('|');
 
 

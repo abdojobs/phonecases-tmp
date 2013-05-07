@@ -17,7 +17,7 @@ namespace PhoneCases.Server
             m_receiver.Parser.PcPairRequest += PcPairRequest;
         }
 
-        protected override void IncomingCall(string callerNumber, string ownerNumber, string time)
+        protected override void IncomingCall( string ownerNumber, string callerNumber, string time)
         {
             Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == ownerNumber).First();
             if (usr == null)
@@ -50,23 +50,34 @@ namespace PhoneCases.Server
             }
         }
 
-        private void PhonePairRequest(string ip, string port, string phonenumber)
+        private void PhonePairRequest(string phoneNumber, string port, string ip)
         {
-            Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == phonenumber).First();
-            if (usr == null)
-                throw new Exception("Couldnt match number with owner"); //Better exception
-
-            AndroidPcPair pair = new AndroidPcPair();
-            if (m_pairMap.TryGetValue(usr.Id, out pair))
-                pair.Android = new Client(ip, port);
-            else
+            try
             {
-                pair.Android = new Client(ip, port);
-                m_pairMap.Add(usr.Id, pair);
+                Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == phoneNumber).First();
+                if (usr == null)
+                    throw new Exception("Couldnt match number with owner"); //Better exception
+
+                AndroidPcPair pair = new AndroidPcPair();
+                if (m_pairMap.TryGetValue(usr.Id, out pair))
+                    pair.Android = new Client(ip, port);
+                else
+                {
+                    pair = new AndroidPcPair();
+                    pair.Android = new Client(ip, port);
+                    m_pairMap.Add(usr.Id, pair);
+                }
             }
+            catch (Exception e)
+            {
+                //Handle Error.
+            }
+            
+
+            
      
         }
-        private void PcPairRequest(string ip, string port, string userId)
+        private void PcPairRequest(string userId, string ip, string port)
         {
 
             AndroidPcPair pair = new AndroidPcPair();
@@ -75,6 +86,7 @@ namespace PhoneCases.Server
                 pair.Pc = new Client(ip, port);
             else
             {
+                pair = new AndroidPcPair();
                 pair.Pc = new Client(ip, port);
                 m_pairMap.Add(int.Parse(userId), pair);
             }
