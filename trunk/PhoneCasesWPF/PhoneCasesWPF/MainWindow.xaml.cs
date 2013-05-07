@@ -194,12 +194,60 @@ namespace PhoneCases.WPFGUI
             MultiFilter filter = new MultiFilter();
 
             filter.AddFilter(ActiveFilter);
-            //filter.AddFilter(PrioFilter);
+            filter.AddFilter(PrioFilter);
+            filter.AddFilter(ReconnectFilter);
+            filter.AddFilter(ClosedFilter);
             
 
             view.Filter = new Predicate<object>(filter.Filter);
 
-        }     
+        }
+        private bool ClosedFilter(object obj)
+        {
+            Cases item = obj as Cases;
+            if (item == null)
+                return false;
+
+            // [J]
+            //Resultat innehåller avslutade
+            if (ShowClosed.IsChecked == true)
+                return true;
+
+            // [ ]
+            //Resultat innehåller inte avslutade
+            if (ShowClosed.IsChecked == false && item.Closed == false)
+                return true;
+
+            // [O]
+            //Resultat innehåller endast avslutade
+            if (ShowClosed.IsChecked == null && item.Closed == true)
+                return true;
+
+            return false;
+        }
+        private bool ReconnectFilter(object obj)
+        {
+            Cases item = obj as Cases;
+            if (item == null)
+                return false;
+
+            // [J]
+            //Resultat innehåller återkoppla
+            if (ShowReconnect.IsChecked == true)
+                return true;
+
+            // [ ]
+            //Resultat innehåller inte återkoppla
+            if (ShowReconnect.IsChecked == false && item.Reconnect == false)
+                return true;
+
+            // [O]
+            //Resultat innehåller endast återkoppla
+            if (ShowReconnect.IsChecked == null && item.Reconnect == true)
+                return true;
+
+            return false;
+        }
         private bool ActiveFilter(object obj)
         {
             Cases item = obj as Cases;
