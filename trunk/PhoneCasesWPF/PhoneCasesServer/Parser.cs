@@ -61,6 +61,7 @@ namespace PhoneCases.Server
         }
 
         //MESSAGE PARSER -- Decides what to do with a message
+        //Remake to use decorator?
         public virtual void ParseMessage(string message)
         {
             if (message != "" || message != null)
