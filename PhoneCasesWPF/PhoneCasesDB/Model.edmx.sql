@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 04/30/2013 15:04:58
--- Generated from EDMX file: E:\ProgrammingProjects\PhoneCases.WPFGUI\PhoneCases.WPFGUI\PhoneCases.WPFGUI\Model.edmx
+-- Date Created: 05/07/2013 12:43:53
+-- Generated from EDMX file: E:\ProgrammingProjects\PhoneCasesWPF\PhoneCasesWPF\PhoneCasesDB\Model.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -105,7 +105,7 @@ CREATE TABLE [pc].[Cases] (
     [Info] nvarchar(max)  NULL,
     [StartTime] datetime  NOT NULL,
     [EndTime] datetime  NULL,
-    [TotalTime] datetime  NULL,
+    [TotalTime] int  NULL,
     [CloseTime] datetime  NULL,
     [Reconnect] bit  NOT NULL,
     [HighPrio] bit  NOT NULL,
