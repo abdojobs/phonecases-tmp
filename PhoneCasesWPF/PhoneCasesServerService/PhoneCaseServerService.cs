@@ -14,7 +14,7 @@ namespace PhoneCases.Server.Service
         static void Main(string[] args)
         {
             Parser parser = new Parser();
-            Receiver receiver = new Receiver(parser);
+            Receiver receiver = new Receiver(parser,21337);
             Transmitter transmitter = new Transmitter();
             ServerInterpreter interpreter = new ServerInterpreter(receiver,transmitter);
 
