@@ -22,9 +22,17 @@ namespace PhoneCases.Server
         {
             try
             {
+                if (caseId == "")
+                {
+                    Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == ownerNumber).First();
+                    AndroidPcPair ap  = new AndroidPcPair();
+                    if (m_pairMap.TryGetValue(usr.Id,out ap))
+                        caseId = ap.CurrentCaseId;
+
+                }
                 Cases Case = ModelContainerHolder.Model.Cases.Find(int.Parse(caseId));
                 Case.EndTime = DateTime.Parse(time);
-                Case.TotalTime = ((TimeSpan?)(((DateTime?)Case.StartTime) - Case.EndTime)).Value.Seconds; // Duration in seconds
+                Case.TotalTime = ((TimeSpan?)(Case.EndTime - (DateTime?)Case.StartTime)).Value.Seconds; // Duration in seconds
                 ModelContainerHolder.Model.SaveChanges();
             }
             catch (System.Exception ex)
@@ -48,6 +56,7 @@ namespace PhoneCases.Server
                 AndroidPcPair pair = new AndroidPcPair();
                 if (m_pairMap.TryGetValue(usr.Id, out pair))
                 {
+                    pair.CurrentCaseId = newCaseID.ToString();
                     if (pair.Android != null)
                     {
                         m_transmitter.Send("00|" + newCaseID, pair.Android); //Send caseId to Phone.
