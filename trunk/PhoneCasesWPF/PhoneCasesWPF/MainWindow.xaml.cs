@@ -124,7 +124,8 @@ namespace PhoneCases.WPFGUI
         }
         public void OpenCaseWindowClickHandler(object sender, RoutedEventArgs e)
         {
-            OpenCaseWindow(((Cases)((ListView)e.Source).SelectedItem));
+            if(((Cases)((ListView)e.Source).SelectedItem) != null)
+                OpenCaseWindow((Cases)((ListView)e.Source).SelectedItem);
         }
         public void OpenCaseWindow(string caseId)
         {
