@@ -8,5 +8,8 @@
     <Setting Name="AutoLogin" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="ServerIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.48.147</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

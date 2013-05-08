@@ -85,7 +85,8 @@ namespace PhoneCases.WPFGUI
             
             m_interpreter.OnCaseCreated(OpenCaseWindow);
             //Do this with dialog
-            m_interpreter.Init(4); //CUrrently initiating with AndroidTest user.
+            //m_interpreter.Init(1);//Tommy 
+            m_interpreter.Init(4); //AndroidTest user.
             
             //m_interpreter.StartReceiving();
 
@@ -131,8 +132,10 @@ namespace PhoneCases.WPFGUI
         {
             try
             {
-                System.Windows.Application.Current.Dispatcher.Invoke((Action) delegate()
+
+                this.Dispatcher.Invoke((Action)delegate()
                 {
+                    ModelContainerHolder.UpdateModel();
                     Cases Case = ModelContainerHolder.Model.Cases.Find(int.Parse(caseId));
                     OpenCaseWindow(Case);
                 }
