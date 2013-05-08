@@ -2,11 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PhoneCases.WPFGUI.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="LastUser" Type="System.String" Scope="User">
-      <Value Profile="(Default)">3</Value>
+    <Setting Name="LastUser" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">4</Value>
     </Setting>
     <Setting Name="AutoLogin" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ServerIP" Type="System.String" Scope="User">
       <Value Profile="(Default)">192.168.48.147</Value>

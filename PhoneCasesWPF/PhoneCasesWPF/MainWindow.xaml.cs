@@ -86,8 +86,13 @@ namespace PhoneCases.WPFGUI
             m_interpreter.OnCaseCreated(OpenCaseWindow);
             //Do this with dialog
             //m_interpreter.Init(1);//Tommy 
-            m_interpreter.Init(4); //AndroidTest user.
-            
+            if (Properties.Settings.Default.AutoLogin && Properties.Settings.Default.LastUser != null)
+                m_interpreter.Init(Properties.Settings.Default.LastUser); //AndroidTest user.
+            else
+            {
+                OpenLoginWindow();
+                
+            }
             //m_interpreter.StartReceiving();
 
         }
@@ -95,6 +100,7 @@ namespace PhoneCases.WPFGUI
         {
             //Command bindings
             this.CommandBindings.Add(new CommandBinding(PCCommands.OpenCaseWindow, OpenCaseWindowCommandHandler));
+            this.CommandBindings.Add(new CommandBinding(PCCommands.OpenLoginWindow, OpenLoginWindowCommandHandler));
             this.CommandBindings.Add(new CommandBinding(PCCommands.UpdateCases, UpdateCasesCommandHandler));
             this.CommandBindings.Add(new CommandBinding(PCCommands.DeleteCase, DeleteCaseCommandHandler));
             this.CommandBindings.Add(new CommandBinding(PCCommands.ApplyFilters, ApplyFiltersCommandHandler));
@@ -116,7 +122,16 @@ namespace PhoneCases.WPFGUI
             MainListView.ItemsSource = model.Model.Cases.Local;
             
         }
-
+        public void OpenLoginWindowCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            OpenLoginWindow();
+        }
+        public void OpenLoginWindow()
+        {
+            LoginWindow lw = new LoginWindow();
+            lw.OnLogin(m_interpreter.Init);
+            lw.ShowDialog();
+        }
         public void OpenCaseWindowCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             if (e != null)
@@ -193,10 +208,11 @@ namespace PhoneCases.WPFGUI
         private void FilterMainListView()
         {
             
-            ICollectionView view = CollectionViewSource.GetDefaultView(MainListView.ItemsSource);
+            
             MultiFilter filter = new MultiFilter();
 
             //Checkboxfilters
+            
             filter.AddFilter(ActiveFilter);
             filter.AddFilter(PrioFilter);
             filter.AddFilter(ReconnectFilter);
@@ -209,8 +225,8 @@ namespace PhoneCases.WPFGUI
             filter.AddFilter(CaseNumberFilter);
             filter.AddFilter(LocationFilter);
             filter.AddFilter(InfoTextFilter);
-            
 
+            ICollectionView view = CollectionViewSource.GetDefaultView(MainListView.ItemsSource);
             view.Filter = new Predicate<object>(filter.Filter);
 
         }
@@ -377,12 +393,14 @@ namespace PhoneCases.WPFGUI
     public static class PCCommands
     {
         private static readonly RoutedUICommand openCaseWindowCommand = new RoutedUICommand("Open Case Window", "OpenCaseWindow", typeof(PCCommands));
+        private static readonly RoutedUICommand openLoginWindowCommand = new RoutedUICommand("Open Login Window", "OpenLoginWindow", typeof(PCCommands));
         private static readonly RoutedUICommand updateCasesCommand = new RoutedUICommand("Update Cases", "UpdateCases", typeof(PCCommands));
         private static readonly RoutedUICommand deleteCaseCommand = new RoutedUICommand("Delete Case", "DeleteCase", typeof(PCCommands));
         private static readonly RoutedUICommand applyFiltersCommand = new RoutedUICommand("Apply Filters", "ApplyFilters", typeof(PCCommands));
         private static readonly RoutedUICommand clearFiltersCommand = new RoutedUICommand("Clear Filters", "ClearFilters", typeof(PCCommands));
 
         public static RoutedUICommand OpenCaseWindow { get { return openCaseWindowCommand; } }
+        public static RoutedUICommand OpenLoginWindow { get { return openLoginWindowCommand; } }
         public static RoutedUICommand UpdateCases { get { return updateCasesCommand; } }
         public static RoutedUICommand DeleteCase { get { return deleteCaseCommand; } }
         public static RoutedUICommand ApplyFilters { get { return applyFiltersCommand; } }

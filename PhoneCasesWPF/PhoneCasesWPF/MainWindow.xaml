@@ -23,6 +23,7 @@
         <Menu Height="20" VerticalAlignment="Top"  Grid.ColumnSpan="3" Background="#FF3A3A3A" Foreground="AliceBlue" IsMainMenu="True">
             <MenuItem Header="_File">
                 <MenuItem Header="Test" Background="#FF3A3A3A" BorderBrush="#FF3A3A3A"></MenuItem>
+                <MenuItem Header="Login" Background="#FF3A3A3A" BorderBrush="#FF3A3A3A" Command="local:PCCommands.OpenLoginWindow"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Edit" >
                 <MenuItem Header="Test" Background="#FF3A3A3A"></MenuItem>
