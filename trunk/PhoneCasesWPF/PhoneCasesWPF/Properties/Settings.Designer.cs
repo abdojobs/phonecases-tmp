@@ -25,10 +25,10 @@ namespace PhoneCases.WPFGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3")]
-        public string LastUser {
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int LastUser {
             get {
-                return ((string)(this["LastUser"]));
+                return ((int)(this["LastUser"]));
             }
             set {
                 this["LastUser"] = value;
@@ -37,7 +37,7 @@ namespace PhoneCases.WPFGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool AutoLogin {
             get {
                 return ((bool)(this["AutoLogin"]));

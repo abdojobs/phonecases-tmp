@@ -5,7 +5,7 @@
         xmlns:properties="clr-namespace:PhoneCases.WPFGUI.Properties"
         xml:lang="sv-SE"
         Title="Login" Height="120" Width="500" Background="#FF2B2B2B">
-    <Grid>
+    <Grid Name="MainLoginGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -24,9 +24,9 @@
 
 
         <TextBlock VerticalAlignment="Center" Foreground="AliceBlue" Margin="10,12,10,13" Grid.Row="1" Height="16">Användare</TextBlock>
-        <ComboBox HorizontalAlignment="Center" Height="23"  VerticalAlignment="Center" Width="175" Name="UsersComboBox" Grid.Row="1" Grid.Column="1" Margin="7,9" />
-        <CheckBox Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center"  Name="AutoLoginCheckBox"  Grid.Row="1" Grid.Column="2" Height="16" Width="69" >Autologin</CheckBox>
-        <Button  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="24,10,24,9" Width="75" Name="LoginButton"  Grid.Row="1" Grid.Column="3" Height="22" >Login</Button>
+        <ComboBox HorizontalAlignment="Center" Height="23"  VerticalAlignment="Center" Width="175" Name="UsersComboBox" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding}" DisplayMemberPath="Name" SelectedValuePath="Id"/>
+        <CheckBox Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center"  Name="AutoLoginCheckBox"  Grid.Row="1" Grid.Column="2" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=AutoLogin}" >Autologin</CheckBox>
+        <Button  VerticalAlignment="Center" HorizontalAlignment="Center" Width="75" Name="LoginButton"  Grid.Row="1" Grid.Column="3" Click="LoginButton_Click" >Login</Button>
 
     </Grid>
 
