@@ -2,16 +2,33 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:PhoneCases.WPFGUI"
+        xmlns:properties="clr-namespace:PhoneCases.WPFGUI.Properties"
         xml:lang="sv-SE"
-        Title="Login" Height="75" Width="435" Background="#FF2B2B2B">
-    <StackPanel Background="#FF2B2B2B" Orientation="Horizontal" >
+        Title="Login" Height="120" Width="500" Background="#FF2B2B2B">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
 
-        <TextBlock VerticalAlignment="Center" Foreground="AliceBlue" Margin="10,0,10,0">Användare</TextBlock>
-        <ComboBox HorizontalAlignment="Right" Height="23" Margin="0,0,10,0" VerticalAlignment="Center" Width="175" Name="UsersComboBox">
 
-        </ComboBox>
-        <CheckBox Foreground="AliceBlue" VerticalAlignment="Center" Margin="0,0,10,0" Name="AutoLoginCheckBox">Autologin</CheckBox>
-        <Button  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Width="75" Name="LoginButton">Login</Button>
-    </StackPanel>
+        <TextBlock VerticalAlignment="Center" Foreground="AliceBlue" Margin="10,13" Height="16" >Server:</TextBlock>
+        <TextBox HorizontalAlignment="Center" Height="22"  VerticalAlignment="Center" Width="175" Name="ServerTextBox" Grid.Row="0" Grid.Column="1" Margin="7,10" Text="{Binding Source={x:Static properties:Settings.Default}, Path=ServerIP}"/>
+
+
+
+        <TextBlock VerticalAlignment="Center" Foreground="AliceBlue" Margin="10,12,10,13" Grid.Row="1" Height="16">Användare</TextBlock>
+        <ComboBox HorizontalAlignment="Center" Height="23"  VerticalAlignment="Center" Width="175" Name="UsersComboBox" Grid.Row="1" Grid.Column="1" Margin="7,9" />
+        <CheckBox Foreground="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center"  Name="AutoLoginCheckBox"  Grid.Row="1" Grid.Column="2" Height="16" Width="69" >Autologin</CheckBox>
+        <Button  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="24,10,24,9" Width="75" Name="LoginButton"  Grid.Row="1" Grid.Column="3" Height="22" >Login</Button>
+
+    </Grid>
+
 
 </Window>
