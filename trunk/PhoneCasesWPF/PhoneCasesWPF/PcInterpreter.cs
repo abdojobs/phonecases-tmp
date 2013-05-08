@@ -33,7 +33,7 @@ namespace PhoneCases.WPFGUI
         }
         private void PairWithServer()
         {
-            Client server = new Client(LocalIPAddress(),(21337).ToString());
+            Client server = new Client(Properties.Settings.Default.ServerIP,(21337).ToString());
             m_transmitter.Send("98|" + m_ownerId + "|" + LocalIPAddress() + "|" + m_receiver.ListeningPort, server);
         }
         private string LocalIPAddress()
