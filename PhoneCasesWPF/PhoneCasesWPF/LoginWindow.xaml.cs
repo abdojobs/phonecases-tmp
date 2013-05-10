@@ -36,12 +36,9 @@ namespace PhoneCases.WPFGUI
         }
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Properties.Settings.Default.LastUser != null)
-            {
-                if (DoLogin != null)
-                    DoLogin(Properties.Settings.Default.LastUser);
-                this.Close();
-            }
+            if (DoLogin != null)
+                DoLogin(Properties.Settings.Default.LastUser);
+            this.Close();
         }
     }
 }

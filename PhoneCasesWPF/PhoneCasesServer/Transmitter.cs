@@ -10,7 +10,7 @@ namespace PhoneCases.Server
 {
     public class Transmitter
     {
-        private TcpClient m_tcpClient = new TcpClient();
+        private TcpClient m_tcpClient;
         private NetworkStream m_networkStream;
 
         public Transmitter()
@@ -22,6 +22,7 @@ namespace PhoneCases.Server
             //Make asyncronous
             try
             {
+                m_tcpClient = new TcpClient();
                 m_tcpClient.Connect(to.IP, int.Parse(to.Port));
                 m_networkStream = m_tcpClient.GetStream();
                 byte[] message = new byte[4096];
@@ -31,6 +32,7 @@ namespace PhoneCases.Server
                 m_networkStream.Flush();
                 m_networkStream.Close();
                 m_tcpClient.Close();
+                m_tcpClient = null;
             }
             catch (Exception e)
             {
