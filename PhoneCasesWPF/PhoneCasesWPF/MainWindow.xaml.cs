@@ -121,6 +121,10 @@ namespace PhoneCases.WPFGUI
             MainListView.DataContext = model.Model.Cases.Local;
 
             MainListView.ItemsSource = model.Model.Cases.Local;
+
+            model.Model.Users.Load();
+            OwnerCombobox.ItemsSource = model.Model.Users.Local;
+            OwnerCombobox.SelectedIndex = 0; //BAD
             
         }
         public void OpenLoginWindowCommandHandler(object sender, ExecutedRoutedEventArgs e)
