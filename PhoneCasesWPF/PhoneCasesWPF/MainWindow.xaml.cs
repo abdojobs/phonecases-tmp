@@ -181,11 +181,14 @@ namespace PhoneCases.WPFGUI
         }
         private void UpdateCases()
         {
-            model.Model.SaveChanges();
-            model.UpdateModel();
-            model.Model.Cases.Load();
-            MainListView.ItemsSource = model.Model.Cases.Local;
-            FilterMainListView();
+            this.Dispatcher.Invoke((Action)delegate()
+            {
+                model.Model.SaveChanges();
+                model.UpdateModel();
+                model.Model.Cases.Load();
+                MainListView.ItemsSource = model.Model.Cases.Local;
+                FilterMainListView();
+            });
         }
         private void DeleteCaseCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
