@@ -40,6 +40,10 @@ namespace PhoneCases.Server
 
             m_parser = parser;
         }
+        ~Receiver()
+        {
+            Kill();
+        }
         public void Start()
         {
             m_listenThread.Start();
@@ -47,16 +51,8 @@ namespace PhoneCases.Server
         public void Kill()
         {
             m_requestStop = true;
-
+            m_listener.Stop();
             m_listenThread.Abort();
-            try
-            {
-                m_listener.Stop();
-            }
-            finally
-            {
-
-            }
         }
         protected void Listen()
         {
@@ -80,8 +76,8 @@ namespace PhoneCases.Server
             byte[] message = new byte[4096];
             int bytesRead = 0;
             ASCIIEncoding encoder = new ASCIIEncoding();
-            Console.WriteLine("Local" + client.Client.LocalEndPoint.ToString());
-            Console.WriteLine("Remote" + client.Client.RemoteEndPoint.ToString()); //THIS IS THE SHIT
+            //Console.WriteLine("Local" + client.Client.LocalEndPoint.ToString());
+            //Console.WriteLine("Remote" + client.Client.RemoteEndPoint.ToString()); //THIS IS THE SHIT
 
             while (true)
             {
@@ -104,7 +100,7 @@ namespace PhoneCases.Server
 
                 string s = encoder.GetString(message).Remove(bytesRead);
 
-                //FULFIX tills det att jag hittar ett sätt att skicka med IP som parameter från androidclient.
+                //FULFIX until androidclint can send ip.
                 string[] strings = s.Split('|');
                 if (strings[0] == "99")
                 {

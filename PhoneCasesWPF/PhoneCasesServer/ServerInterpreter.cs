@@ -18,6 +18,7 @@ namespace PhoneCases.Server
             m_receiver.Parser.EndOfCall += EndOfCall;
         }
 
+
         void EndOfCall(string ownerNumber, string caseId, string time)
         {
             try

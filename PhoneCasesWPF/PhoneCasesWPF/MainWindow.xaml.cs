@@ -394,7 +394,12 @@ namespace PhoneCases.WPFGUI
             return false;
         }
 
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            m_interpreter.StopReceiving();
 
+            base.OnClosing(e);
+        }
     }
     public static class PCCommands
     {
