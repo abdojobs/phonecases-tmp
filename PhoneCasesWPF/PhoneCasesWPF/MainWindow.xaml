@@ -4,6 +4,9 @@
         xmlns:local="clr-namespace:PhoneCases.WPFGUI"
         xml:lang="sv-SE"
         Title="MainWindow" Height="600" Width="1000" MinWidth="1000" MinHeight="600" Name="TheMainWindow">
+    <Window.Resources>
+        <local:SecondsToTimeConverter x:Key="SecondsToTimeConverter" />
+    </Window.Resources>
 
     <!-- MAIN GRID -->
     <Grid Background="#FF2B2B2B">
@@ -53,7 +56,7 @@
                     <GridViewColumn Width="Auto" Header="Företag" DisplayMemberBinding="{Binding Path=Customer.Company.Name}" />
                     <GridViewColumn Width="Auto" Header="Inkom" DisplayMemberBinding="{Binding Path=StartTime}" />
                     <!--<GridViewColumn Width="Auto" Header="Avslutades" DisplayMemberBinding="{Binding Path=EndTime}" />-->
-                    <GridViewColumn Width="Auto" Header="Total tid" DisplayMemberBinding="{Binding Path=TotalTime}" />
+                    <GridViewColumn Width="Auto" Header="Total tid" DisplayMemberBinding="{Binding Path=TotalTime, Converter={StaticResource SecondsToTimeConverter}}" />
                     <GridViewColumn Width="Auto" Header="PRIO">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
