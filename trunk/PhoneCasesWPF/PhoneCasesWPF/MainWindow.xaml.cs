@@ -132,6 +132,7 @@ namespace PhoneCases.WPFGUI
             LoginWindow lw = new LoginWindow();
             lw.OnLogin(m_interpreter.Init);
             lw.ShowDialog();
+            lw = null;
         }
         public void OpenCaseWindowCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {

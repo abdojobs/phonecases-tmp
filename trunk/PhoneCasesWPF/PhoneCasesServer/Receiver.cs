@@ -46,7 +46,8 @@ namespace PhoneCases.Server
         }
         public void Start()
         {
-            m_listenThread.Start();
+            if(!m_listenThread.IsAlive)
+                m_listenThread.Start();
         }
         public void Kill()
         {
