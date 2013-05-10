@@ -124,7 +124,12 @@ public class Server {
 	}
 	public void StartServer()
 	{
-		if(!m_listningThread.isAlive())
+		if(m_listningThread!=null)
+		{
+			if(!m_listningThread.isAlive())
+				m_listningThread.start();
+		}
+		else
 			m_listningThread.start();
 
 	}
@@ -132,8 +137,15 @@ public class Server {
 	{
 		if(m_listningThread.isAlive())
 		{
+			
 			m_listningThread.interrupt();
-			m_listningThread.stop();
+			try {
+				m_serverSocket.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//m_listningThread.stop();
 		}
 			
 	}
