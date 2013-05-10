@@ -23,7 +23,10 @@ namespace PhoneCases.Server
         {
             try
             {
-                Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == ownerNumber).First();
+                Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == ownerNumber).FirstOrDefault();
+                if (usr == null)
+                    throw new Exception("Couldnt match number with owner"); //Better exception
+
                 AndroidPcPair ap = new AndroidPcPair();
 
                 if (string.IsNullOrEmpty(caseId))//If the phone didnt pass the caseId, grab the latest recorded in the Pair.
@@ -50,7 +53,7 @@ namespace PhoneCases.Server
         {
             try
             {
-                Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == ownerNumber).First();
+                Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == ownerNumber).FirstOrDefault();
                 if (usr == null)
                     throw new Exception("Couldnt match number with owner"); //Better exception
 
@@ -90,7 +93,7 @@ namespace PhoneCases.Server
         {
             try
             {
-                Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == phoneNumber).First();
+                Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == phoneNumber).FirstOrDefault();
                 if (usr == null)
                     throw new Exception("Couldnt match number with owner"); //Better exception
 
