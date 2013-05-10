@@ -35,7 +35,7 @@ namespace PhoneCases.DB
                 Users owner = Model.Users.Find(ownerId);
                 if (customer == null)
                 {
-                    
+                    //Use "Okänd kund" and make the user choose from existing customers or create a new.
                     throw new Exception("Customer not found"); //Should notify pcuser and create new customer
                 }
                     
