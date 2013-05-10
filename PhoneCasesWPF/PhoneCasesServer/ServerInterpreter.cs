@@ -56,7 +56,8 @@ namespace PhoneCases.Server
 
                 //Create new case
                 int newCaseID = ModelContainerHolder.NewCase(callerNumber, usr.Id, DateTime.Parse(time));
-
+                if (newCaseID == -1)
+                    throw new Exception("Couldnt create new case.");
                 //Notify PC
                 AndroidPcPair pair = new AndroidPcPair();
                 if (m_pairMap.TryGetValue(usr.Id, out pair))

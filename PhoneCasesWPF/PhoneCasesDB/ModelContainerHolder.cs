@@ -31,10 +31,14 @@ namespace PhoneCases.DB
         {
             try
             {
-                Customers customer = Model.Customers.Where(a => a.PhoneNumber == customerNumber).First();
+                Customers customer = Model.Customers.Where(a => a.PhoneNumber == customerNumber).FirstOrDefault();
                 Users owner = Model.Users.Find(ownerId);
                 if (customer == null)
+                {
+                    
                     throw new Exception("Customer not found"); //Should notify pcuser and create new customer
+                }
+                    
                 if (owner != null)
                 {
                     try
