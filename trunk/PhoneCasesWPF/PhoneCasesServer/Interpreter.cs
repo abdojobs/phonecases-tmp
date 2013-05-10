@@ -16,10 +16,21 @@ namespace PhoneCases.Server
             m_receiver = receiver;
             m_transmitter = transmitter;
         }
+        ~Interpreter()
+        {
+            m_receiver.Kill();
+            m_receiver.Parser = null;
+            m_receiver = null;
+            m_transmitter = null;
+        }
         public void StartReceiving()
         {
             m_receiver.Start();
             m_receiver.Parser.IncomingCall += IncomingCall;
+        }
+        public void StopReceiving()
+        {
+            m_receiver.Kill();
         }
 
         protected virtual void IncomingCall(string ownerNumber, string callerNumber, string time)
