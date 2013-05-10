@@ -25,6 +25,10 @@ namespace PhoneCases.WPFGUI
         {
             this.m_receiver.Parser.CaseCreated += handler;
         }
+        public void OnUpdateCases(Parser.UpdateCasesHandler handler)
+        {
+            this.m_receiver.Parser.UpdateCases += handler;
+        }
         public void Init(int ownerId)
         {
             m_ownerId = ownerId;

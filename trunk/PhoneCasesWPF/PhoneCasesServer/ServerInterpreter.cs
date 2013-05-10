@@ -22,18 +22,22 @@ namespace PhoneCases.Server
         {
             try
             {
-                if (caseId == "")
+                Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == ownerNumber).First();
+                AndroidPcPair ap = new AndroidPcPair();
+
+                if (string.IsNullOrEmpty(caseId))//If the phone didnt pass the caseId, grab the latest recorded in the Pair.
                 {
-                    Users usr = ModelContainerHolder.Model.Users.Where(a => a.PhoneNumber == ownerNumber).First();
-                    AndroidPcPair ap  = new AndroidPcPair();
                     if (m_pairMap.TryGetValue(usr.Id,out ap))
                         caseId = ap.CurrentCaseId;
-
                 }
                 Cases Case = ModelContainerHolder.Model.Cases.Find(int.Parse(caseId));
                 Case.EndTime = DateTime.Parse(time);
                 Case.TotalTime = ((TimeSpan?)(Case.EndTime - (DateTime?)Case.StartTime)).Value.Seconds; // Duration in seconds
                 ModelContainerHolder.Model.SaveChanges();
+
+                //Notify PCClient
+                if (m_pairMap.TryGetValue(usr.Id, out ap))
+                    Send("02", ap.Pc);
             }
             catch (System.Exception ex)
             {

@@ -84,6 +84,7 @@ namespace PhoneCases.WPFGUI
             m_interpreter = new PcInterpreter(new Receiver(new PcParser(), 21339), new Transmitter());
             
             m_interpreter.OnCaseCreated(OpenCaseWindow);
+            m_interpreter.OnUpdateCases(UpdateCases);
             //Do this with dialog
             //m_interpreter.Init(1);//Tommy 
             if (Properties.Settings.Default.AutoLogin && Properties.Settings.Default.LastUser != null)
@@ -145,19 +146,20 @@ namespace PhoneCases.WPFGUI
         }
         public void OpenCaseWindow(string caseId)
         {
-            try
+            //try
             {
 
                 this.Dispatcher.Invoke((Action)delegate()
                 {
-                    ModelContainerHolder.UpdateModel();
+                    UpdateCases();
+                    //ModelContainerHolder.UpdateModel();
                     Cases Case = ModelContainerHolder.Model.Cases.Find(int.Parse(caseId));
                     OpenCaseWindow(Case);
                 }
                 );
                 //OpenCaseWindow(Case);
             }
-            catch (System.Exception e)
+            //catch (System.Exception e)
             {
             	//Could not find case with caseid.
             }
@@ -179,6 +181,7 @@ namespace PhoneCases.WPFGUI
         }
         private void UpdateCases()
         {
+            model.Model.SaveChanges();
             model.UpdateModel();
             model.Model.Cases.Load();
             MainListView.ItemsSource = model.Model.Cases.Local;

@@ -9,7 +9,7 @@ namespace PhoneCases.WPFGUI
 {
     public class PcParser : Parser
     {
-
+        
         public override void ParseMessage(string message)
         {
             if (message != "" || message != null)
@@ -35,13 +35,13 @@ namespace PhoneCases.WPFGUI
                             OnAnsweredCall(strings);
                         }
                         break;
-                    ////End of Incoming Call
-                    //case "02":
-                    //    if (true)
-                    //    {
-                    //        OnEndOfCall(strings[]);
-                    //    }
-                    //    break;
+                    //UpdateCases
+                    case "02":
+                        if (strings.Length == 1)
+                        {
+                            OnUpdateCases();
+                        }
+                        break;
                 }
             }
         }
