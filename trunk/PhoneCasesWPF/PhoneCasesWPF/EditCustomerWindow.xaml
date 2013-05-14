@@ -1,0 +1,27 @@
+﻿<Window x:Class="PhoneCases.WPFGUI.EditCustomerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Edit Customer" Height="300" Width="550" Name="TheEditCustomerWindow">
+    <Grid Background="#FF2B2B2B">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="200*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Namn:" Grid.Column="0" Grid.Row="1"  VerticalAlignment="Center" Foreground="AliceBlue" Margin="5"/>
+        <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="5" Grid.Column="1" Grid.Row="1" Name="CustomerTextBox"/>
+
+        <TextBlock Text="Nummer:" Grid.Column="0" Grid.Row="2"  VerticalAlignment="Center" Foreground="AliceBlue" Margin="5" />
+        <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="5" Grid.Column="1" Grid.Row="2" Name="CustomerNumber"/>
+
+    </Grid>
+</Window>
