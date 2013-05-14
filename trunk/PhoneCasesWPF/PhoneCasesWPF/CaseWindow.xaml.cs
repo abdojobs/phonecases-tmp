@@ -55,7 +55,7 @@ namespace PhoneCases.WPFGUI
 
         private void EditCustomerCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            EditCustomerWindow window = new EditCustomerWindow();
+            EditCustomerWindow window = new EditCustomerWindow(m_case.Customer);
             window.ShowDialog();
             window = null;
         }
