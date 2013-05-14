@@ -39,6 +39,8 @@ namespace PhoneCases.WPFGUI
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, CloseCommandHandler));
             this.CommandBindings.Add(new CommandBinding(PCCommands.EditCase, EditCaseCommandHandler));
             this.CommandBindings.Add(new CommandBinding(PCCommands.UpdateCase, UpdateCaseCommandHandler));
+            this.CommandBindings.Add(new CommandBinding(PCCommands.EditCustomer, EditCustomerCommandHandler));
+            
 
             this.InputBindings.Add(new InputBinding(ApplicationCommands.Save, new KeyGesture(Key.S,ModifierKeys.Control)));
             this.InputBindings.Add(new InputBinding(ApplicationCommands.Close, new KeyGesture(Key.Escape)));
@@ -48,6 +50,13 @@ namespace PhoneCases.WPFGUI
             this.DataContext = m_case;
             CustomerComboBox.Items.Add(m_case.Customer);
             CustomerComboBox.SelectedValue = m_case.Customer;
+        }
+
+        private void EditCustomerCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            EditCustomerWindow window = new EditCustomerWindow();
+            window.ShowDialog();
+            window = null;
         }
         private void SaveChangesCommandHandler(object sender, RoutedEventArgs e)
         {
