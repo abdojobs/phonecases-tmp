@@ -22,6 +22,17 @@ namespace PhoneCases.WPFGUI
         public EditCustomerWindow()
         {
             InitializeComponent();
+            InitBindings();
+        }
+        private void InitBindings()
+        {
+            this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, CloseCommandHandler));
+
+            this.InputBindings.Add(new InputBinding(ApplicationCommands.Close, new KeyGesture(Key.Escape)));
+        }
+        private void CloseCommandHandler(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

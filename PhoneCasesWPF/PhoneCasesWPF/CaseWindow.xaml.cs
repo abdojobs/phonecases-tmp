@@ -45,6 +45,7 @@ namespace PhoneCases.WPFGUI
             this.InputBindings.Add(new InputBinding(ApplicationCommands.Save, new KeyGesture(Key.S,ModifierKeys.Control)));
             this.InputBindings.Add(new InputBinding(ApplicationCommands.Close, new KeyGesture(Key.Escape)));
             this.InputBindings.Add(new InputBinding(PCCommands.EditCase, new KeyGesture(Key.U,ModifierKeys.Control)));
+            this.InputBindings.Add(new InputBinding(PCCommands.EditCustomer, new KeyGesture(Key.E, ModifierKeys.Control)));
 
 
             this.DataContext = m_case;
