@@ -16,6 +16,7 @@ namespace PhoneCases.WPFGUI
         private static readonly RoutedUICommand deleteCaseCommand = new RoutedUICommand("Delete Case", "DeleteCase", typeof(PCCommands));
         private static readonly RoutedUICommand applyFiltersCommand = new RoutedUICommand("Apply Filters", "ApplyFilters", typeof(PCCommands));
         private static readonly RoutedUICommand clearFiltersCommand = new RoutedUICommand("Clear Filters", "ClearFilters", typeof(PCCommands));
+        private static readonly RoutedUICommand editCaseCommand = new RoutedUICommand("Edit Case", "EditCase", typeof(PCCommands));
 
         public static RoutedUICommand OpenCaseWindow { get { return openCaseWindowCommand; } }
         public static RoutedUICommand OpenLoginWindow { get { return openLoginWindowCommand; } }
@@ -23,5 +24,6 @@ namespace PhoneCases.WPFGUI
         public static RoutedUICommand DeleteCase { get { return deleteCaseCommand; } }
         public static RoutedUICommand ApplyFilters { get { return applyFiltersCommand; } }
         public static RoutedUICommand ClearFilters { get { return clearFiltersCommand; } }
+        public static RoutedUICommand EditCase { get { return editCaseCommand; } }
     }
 }
