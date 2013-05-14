@@ -42,6 +42,8 @@ namespace PhoneCases.WPFGUI
             this.InputBindings.Add(new InputBinding(ApplicationCommands.Close, new KeyGesture(Key.Escape)));
 
             this.DataContext = m_case;
+            CustomerComboBox.Items.Add(m_case);
+            CustomerComboBox.SelectedValue = m_case;
         }
         private void SaveChangesCommandHandler(object sender, RoutedEventArgs e)
         {
