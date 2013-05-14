@@ -37,13 +37,17 @@ namespace PhoneCases.WPFGUI
             //Command bindings
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Save, SaveChangesCommandHandler));
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, CloseCommandHandler));
+            this.CommandBindings.Add(new CommandBinding(PCCommands.EditCase, EditCaseCommandHandler));
+            this.CommandBindings.Add(new CommandBinding(PCCommands.UpdateCase, UpdateCaseCommandHandler));
 
             this.InputBindings.Add(new InputBinding(ApplicationCommands.Save, new KeyGesture(Key.S,ModifierKeys.Control)));
             this.InputBindings.Add(new InputBinding(ApplicationCommands.Close, new KeyGesture(Key.Escape)));
+            this.InputBindings.Add(new InputBinding(PCCommands.EditCase, new KeyGesture(Key.U,ModifierKeys.Control)));
+
 
             this.DataContext = m_case;
-            CustomerComboBox.Items.Add(m_case);
-            CustomerComboBox.SelectedValue = m_case;
+            CustomerComboBox.Items.Add(m_case.Customer);
+            CustomerComboBox.SelectedValue = m_case.Customer;
         }
         private void SaveChangesCommandHandler(object sender, RoutedEventArgs e)
         {
@@ -52,6 +56,28 @@ namespace PhoneCases.WPFGUI
         private void CloseCommandHandler(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+        private void EditCaseCommandHandler(object sender, RoutedEventArgs e)
+        {
+            if (SaveButton.Visibility == Visibility.Hidden)
+            {
+                if (!CustomerComboBox.Items.IsEmpty)
+                {
+                    CustomerComboBox.ItemsSource = null;
+                    CustomerComboBox.Items.Clear();
+                }
+                CustomerComboBox.IsEnabled = true;
+                CustomerComboBox.ItemsSource = model.Model.Customers.ToList();
+                CustomerComboBox.SelectedValue = m_case.Customer;
+                SaveButton.Visibility = Visibility.Visible;
+            }
+        }
+        private void UpdateCaseCommandHandler(object sender, RoutedEventArgs e)
+        {
+            m_case.Customer = CustomerComboBox.SelectedItem as Customers;
+            SaveButton.Visibility = Visibility.Hidden;
+            CustomerComboBox.IsEnabled = false;
+            SaveChanges();
         }
         private void SaveChanges()
         {
