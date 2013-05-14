@@ -111,6 +111,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PCCommands.cs" />
     <Compile Include="PcInterpreter.cs" />
     <Compile Include="PcParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
