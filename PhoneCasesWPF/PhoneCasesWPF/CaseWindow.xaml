@@ -16,6 +16,7 @@
         <Menu Height="20" VerticalAlignment="Top"  Grid.ColumnSpan="3" Background="#FF3A3A3A" Foreground="AliceBlue" IsMainMenu="True">
             <MenuItem Header="_File">
                 <MenuItem Header="Lås upp" Background="#FF3A3A3A" BorderBrush="#FF3A3A3A" Command="local:PCCommands.EditCase"/>
+                <MenuItem Header="Editera kund..." Background="#FF3A3A3A" BorderBrush="#FF3A3A3A" Command="local:PCCommands.EditCustomer"/>
                 <MenuItem Header="Ny kund..." Background="#FF3A3A3A" BorderBrush="#FF3A3A3A" Command="local:PCCommands.EditCase"/>
             </MenuItem>
             <MenuItem Header="_Edit" >
@@ -65,7 +66,7 @@
                         <TextBox HorizontalAlignment="Stretch" Text="{Binding Path=Id}" IsEnabled="False" Margin="5,0,0,5" Grid.Column="1" Grid.Row="0"/>
 
                         <TextBlock Text="Namn:" Grid.Column="0" Grid.Row="1"/>
-                        <ComboBox ItemsSource="{Binding}" DisplayMemberPath="Customer.Name" IsEnabled="False" Margin="5,0,0,5" Grid.Column="1" Grid.Row="1" Name="CustomerComboBox"/>
+                        <ComboBox ItemsSource="{Binding}" DisplayMemberPath="Name" IsEnabled="False" Margin="5,0,0,5" Grid.Column="1" Grid.Row="1" Name="CustomerComboBox"/>
                         <!--<TextBox HorizontalAlignment="Stretch" Text="{Binding Path=Customer.Name}" IsEnabled="False" Margin="5,0,0,5" Grid.Column="1" Grid.Row="1"/>-->
 
                         <TextBlock Text="Nummer:" Grid.Column="0" Grid.Row="2"/>
@@ -81,6 +82,8 @@
                         <CheckBox IsChecked="{Binding Path=Closed}" Grid.Row="5" Grid.ColumnSpan="2" Foreground="AliceBlue">Löst</CheckBox>
                         <CheckBox IsChecked="{Binding Path=Reconnect}" Grid.Row="6" Grid.ColumnSpan="2" Foreground="AliceBlue">Återkoppla</CheckBox>
                         <CheckBox IsChecked="{Binding Path=HighPrio}" Grid.Row="7" Grid.ColumnSpan="2" Foreground="AliceBlue">PRIO</CheckBox>
+
+                        <Button  Grid.Row="8" Grid.Column="1" Width="50" HorizontalAlignment="Right" Visibility="Hidden"  Command="local:PCCommands.UpdateCase" Name="SaveButton">Spara</Button>
 
 
                     </Grid>
