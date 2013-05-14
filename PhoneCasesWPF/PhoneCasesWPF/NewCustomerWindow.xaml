@@ -1,0 +1,8 @@
+﻿<Window x:Class="PhoneCases.WPFGUI.NewCustomerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="New Customer" Height="300" Width="550" Name="TheNewCustomerWindow">
+    <Grid Background="#FF2B2B2B">
+
+    </Grid>
+</Window>
