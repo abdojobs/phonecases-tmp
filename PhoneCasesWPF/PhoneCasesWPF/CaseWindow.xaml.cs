@@ -28,9 +28,13 @@ namespace PhoneCases.WPFGUI
         public CaseWindow(Cases pCase)
         {
             InitializeComponent();
+            ModelContainerHolder.UpdateModel();
             m_case = pCase;
+            ModelContainerHolder.Model.Cases.Attach(m_case);
             this.Title = pCase.Id.ToString() + " - " + pCase.Customer.Name;
             InitBindings();
+
+
         }
         private void InitBindings()
         {
@@ -78,7 +82,7 @@ namespace PhoneCases.WPFGUI
                 }
                 CustomerComboBox.IsEnabled = true;
                 CustomerComboBox.ItemsSource = model.Model.Customers.ToList();
-                CustomerComboBox.SelectedValue = m_case.Customer;
+                CustomerComboBox.SelectedItem = m_case.Customer;
                 SaveButton.Visibility = Visibility.Visible;
             }
         }
@@ -92,6 +96,7 @@ namespace PhoneCases.WPFGUI
         private void SaveChanges()
         {
             model.Model.SaveChanges();
+            model.UpdateModel();
         }
         protected override void OnClosing(CancelEventArgs e)
         {
