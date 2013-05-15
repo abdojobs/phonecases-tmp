@@ -25,7 +25,7 @@
         <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="5" Grid.Column="1" Grid.Row="2" Name="CustomerNumberTextBox" Text="{Binding Path=PhoneNumber}"/>
 
         <TextBlock Text="Företag:" Grid.Column="0" Grid.Row="3"  VerticalAlignment="Center" Foreground="AliceBlue" Margin="5" />
-        <ComboBox HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="5" Grid.Column="1" Grid.Row="3" Name="CompanyComboBox"/>
+        <ComboBox HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="5" Grid.Column="1" Grid.Row="3" Name="CompanyComboBox" SelectedValue="Id" DisplayMemberPath="Name"/>
         <Button Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" Margin="5">Nytt Företag</Button>
 
         <Button Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" Width="75" Margin="5" Command="ApplicationCommands.Save">Spara Kund</Button>
