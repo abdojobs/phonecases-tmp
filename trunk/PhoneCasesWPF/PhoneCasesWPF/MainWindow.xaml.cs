@@ -44,9 +44,9 @@ namespace PhoneCases.WPFGUI
             InitializeComponent();
 
 
-            Timer updateTimer = new Timer(20*1000);
-            updateTimer.Elapsed += new ElapsedEventHandler(UpdateCasesTimerHandler);
-            updateTimer.Enabled = true;
+            //Timer updateTimer = new Timer(50*1000);
+            //updateTimer.Elapsed += new ElapsedEventHandler(UpdateCasesTimerHandler);
+            //updateTimer.Enabled = true;
             
             InitBindings();
 
@@ -118,12 +118,12 @@ namespace PhoneCases.WPFGUI
             MainListView.MouseDoubleClick += OpenCaseWindowClickHandler;
             
 
-            MainListView.DataContext = model.Model.Cases.Local;
+            MainListView.DataContext = model.Model.Cases.ToList();
 
-            MainListView.ItemsSource = model.Model.Cases.Local;
+            MainListView.ItemsSource = model.Model.Cases.ToList();
 
             model.Model.Users.Load();
-            OwnerCombobox.ItemsSource = model.Model.Users.Local;
+            OwnerCombobox.ItemsSource = model.Model.Users.ToList();
             OwnerCombobox.SelectedIndex = 0; //BAD
             
         }
@@ -157,7 +157,6 @@ namespace PhoneCases.WPFGUI
                 this.Dispatcher.Invoke((Action)delegate()
                 {
                     UpdateCases();
-                    //ModelContainerHolder.UpdateModel();
                     Cases Case = ModelContainerHolder.Model.Cases.Find(int.Parse(caseId));
                     OpenCaseWindow(Case);
                 }
@@ -187,8 +186,8 @@ namespace PhoneCases.WPFGUI
         private void UpdateCases()
         {
             this.Dispatcher.Invoke((Action)delegate()
-            {
-                model.Model.SaveChanges();
+            {  
+                //model.Model.SaveChanges();
                 model.UpdateModel();
                 model.Model.Cases.Load();
                 MainListView.ItemsSource = model.Model.Cases.Local;
@@ -241,6 +240,7 @@ namespace PhoneCases.WPFGUI
             view.Filter = new Predicate<object>(filter.Filter);
 
         }
+#region Filters
 
         //Filters
         private bool InfoTextFilter(object obj)
@@ -398,6 +398,7 @@ namespace PhoneCases.WPFGUI
 
             return false;
         }
+#endregion
 
         protected override void OnClosing(CancelEventArgs e)
         {
