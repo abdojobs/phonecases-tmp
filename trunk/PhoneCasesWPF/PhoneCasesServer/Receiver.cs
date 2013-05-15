@@ -60,9 +60,17 @@ namespace PhoneCases.Server
             m_listener.Start();
             while (!m_requestStop)
             {
-                TcpClient client = m_listener.AcceptTcpClient();
-                Thread clientThread = new Thread(HandleCommunication);
-                clientThread.Start(client);
+                try
+                {
+                    TcpClient client = m_listener.AcceptTcpClient();
+                    Thread clientThread = new Thread(HandleCommunication);
+                    clientThread.Start(client);
+                }
+                catch (System.Exception ex)
+                {
+                    //WSACancelBlockingCall exception?
+                }
+                
             }
             Console.WriteLine("STOP");
             m_listener.Stop();

@@ -37,6 +37,8 @@ namespace PhoneCases.WPFGUI
 
 
             TheEditCustomerWindow.DataContext = m_customer;
+            CompanyComboBox.ItemsSource = ModelContainerHolder.Model.Companies.ToList();
+            
             
 
         }
@@ -46,6 +48,8 @@ namespace PhoneCases.WPFGUI
         }
         private void SaveCommandHandler(object sender, RoutedEventArgs e)
         {
+            if (CompanyComboBox != null)
+                m_customer.Company = CompanyComboBox.SelectedItem as Companies;
             ModelContainerHolder.Model.SaveChanges();
         }
     }
