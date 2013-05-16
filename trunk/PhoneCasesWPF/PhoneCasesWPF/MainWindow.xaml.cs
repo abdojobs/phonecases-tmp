@@ -236,6 +236,7 @@ namespace PhoneCases.WPFGUI
             filter.AddFilter(CaseNumberFilter);
             filter.AddFilter(LocationFilter);
             filter.AddFilter(InfoTextFilter);
+            filter.AddFilter(OwnerFilter);
 
             ICollectionView view = CollectionViewSource.GetDefaultView(MainListView.ItemsSource);
             view.Filter = new Predicate<object>(filter.Filter);
@@ -244,6 +245,22 @@ namespace PhoneCases.WPFGUI
 #region Filters
 
         //Filters
+
+
+        private bool OwnerFilter(object obj)
+        {
+            Cases item = obj as Cases;
+            if (item == null)
+                return false;
+
+            if(((Users)OwnerCombobox.SelectedItem).Id ==0)
+                return true;
+
+            if(((Users)OwnerCombobox.SelectedItem).Id == item.Owner.Id)
+                return true;
+
+            return false;
+        }
         private bool InfoTextFilter(object obj)
         {
             Cases item = obj as Cases;
