@@ -42,6 +42,8 @@ namespace PhoneCases.WPFGUI
                 if (DoLogin != null)
                 {
                     Properties.Settings.Default.LastUser = (int)UsersComboBox.SelectedValue;
+                    Properties.Settings.Default.AutoLogin = (bool)AutoLoginCheckBox.IsChecked;
+                    Properties.Settings.Default.ServerIP = ServerTextBox.Text;
                     DoLogin(Properties.Settings.Default.LastUser);
                 }
                 this.Close();
