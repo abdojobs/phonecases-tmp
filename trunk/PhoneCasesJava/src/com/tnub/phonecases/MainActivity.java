@@ -61,7 +61,6 @@ public class MainActivity extends Activity {
             	{
             		m_server.StopServer();
             		m_server = null;
-            		m_phoneService = null;
             		button.setText("Start");
             	}
             }
@@ -79,8 +78,10 @@ public class MainActivity extends Activity {
 	//Byt namn till något smartare som beskriver funktionen bättre. Det är ingen server. Det är en listner/klient.
 	private void startServer(String addr)
 	{
-	
-		m_phoneService = new PhoneService(m_telephony.getDeviceId(),addr,21337);//"welleby.sytes.net",21337);//"192.168.0.12",21337);
+		if(m_phoneService==null)
+		{
+			m_phoneService = new PhoneService(m_telephony.getDeviceId(),addr,21337);//"welleby.sytes.net",21337);//"192.168.0.12",21337);
+		}
 		m_phoneService.Init();
 		
 		m_telephony.listen(m_phoneService, PhoneStateListener.LISTEN_CALL_STATE);
