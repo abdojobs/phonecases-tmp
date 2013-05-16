@@ -34,7 +34,7 @@
 
 
             <!-- MAIN TEXTBOX-->
-            <TextBox AcceptsReturn="True" Margin="5,5,0,5" Name="MainTextBox" Text="{Binding Path=Info}"></TextBox>
+            <TextBox AcceptsReturn="True" Margin="5,5,0,5" Name="MainTextBox" Text="{Binding Path=Info, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <!-- GRID SPLITTER -->
             <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" ResizeDirection="Auto" ResizeBehavior="PreviousAndNext" Width="10" Background="Transparent"/>

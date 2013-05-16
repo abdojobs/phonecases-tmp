@@ -53,6 +53,7 @@ namespace PhoneCases.WPFGUI
 
 
             this.DataContext = m_case;
+            MainTextBox.DataContext = m_case;
             CustomerComboBox.Items.Add(m_case.Customer);
             CustomerComboBox.SelectedValue = m_case.Customer;
         }
@@ -95,6 +96,7 @@ namespace PhoneCases.WPFGUI
         }
         private void SaveChanges()
         {
+            
             model.Model.SaveChanges();
             model.UpdateModel();
         }
