@@ -196,7 +196,8 @@ namespace PhoneCases.WPFGUI
         }
         private void DeleteCaseCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            DeleteCase((Cases)((ListView)e.Source).SelectedItem);
+            if(((ListView)e.Source).SelectedItem!=null)
+                DeleteCase((Cases)((ListView)e.Source).SelectedItem);
         }
         private void DeleteCase(Cases pCase)
         {
