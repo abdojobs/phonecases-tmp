@@ -17,6 +17,7 @@ using System.ComponentModel;
 using System.Data.Entity;
 
 using System.Timers;
+using System.Globalization;
 
 using PhoneCases.DB;
 using PhoneCases.Server;
@@ -237,6 +238,7 @@ namespace PhoneCases.WPFGUI
             filter.AddFilter(LocationFilter);
             filter.AddFilter(InfoTextFilter);
             filter.AddFilter(OwnerFilter);
+            filter.AddFilter(TimeFilter);
 
             ICollectionView view = CollectionViewSource.GetDefaultView(MainListView.ItemsSource);
             view.Filter = new Predicate<object>(filter.Filter);
@@ -246,7 +248,40 @@ namespace PhoneCases.WPFGUI
 
         //Filters
 
+        private int DaysSince(DateTime time)
+        {
+            return (int)(DateTime.Now - time).TotalDays;
+        }
+        private bool TimeFilter(object obj)
+        {
+            Cases item = obj as Cases;
+            if (item == null)
+                return false;
 
+            if (TimeAll.IsChecked == true)
+                return true;
+
+            if (Time1Day.IsChecked == true)
+                return (DaysSince(item.StartTime) < 1);
+            if (Time7Day.IsChecked == true)
+                return (DaysSince(item.StartTime) < 7);
+            if (Time30Day.IsChecked == true)
+                return (DaysSince(item.StartTime) < 30);
+
+            if (TimeThisDay.IsChecked == true)
+                return item.StartTime.Year == DateTime.Now.Year && item.StartTime.Month == DateTime.Now.Month && item.StartTime.Day == DateTime.Now.Day;
+            if (TimeThisWeek.IsChecked == true)
+            {
+                System.Globalization.Calendar cal = new System.Globalization.GregorianCalendar();
+                return cal.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstDay, DayOfWeek.Monday) == cal.GetWeekOfYear(item.StartTime, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
+            }
+            if (TimeThisMonth.IsChecked == true)
+                return item.StartTime.Year == DateTime.Now.Year && item.StartTime.Month == DateTime.Now.Month;
+
+
+
+            return false;
+        }
         private bool OwnerFilter(object obj)
         {
             Cases item = obj as Cases;
