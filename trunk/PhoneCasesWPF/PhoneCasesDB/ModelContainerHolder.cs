@@ -86,5 +86,35 @@ namespace PhoneCases.DB
             }
             return -1;
         }
+        public static int NewCompany(string CompanyName, int CompanyType = 0, int CompanyLocation = 0)
+        {
+            try
+            {
+                CompanyTypes type = Model.CompanyTypes.Find(CompanyType);
+                Locations location = Model.Locations.Find(CompanyLocation);
+                Companies entity = Model.Companies.Add(new Companies() { Name = CompanyName, CompanyType = type, Location = location });
+                Model.SaveChanges();
+                return entity.Id;
+            }
+            catch (System.Exception e)
+            {
+                //Error.
+            }
+            return -1;
+        }
+        public static int NewLocation(string LocationName)
+        {
+            try
+            {
+                Locations entity = Model.Locations.Add(new Locations() {Name = LocationName });
+                Model.SaveChanges();
+                return entity.Id;
+            }
+            catch (System.Exception e)
+            {
+                //Error.
+            }
+            return -1;
+        }
     }
 }

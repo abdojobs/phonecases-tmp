@@ -87,6 +87,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="EditLocationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditCompanyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="EditCustomerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -105,6 +113,12 @@
     </Compile>
     <Compile Include="CaseWindow.xaml.cs">
       <DependentUpon>CaseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditLocationWindow.xaml.cs">
+      <DependentUpon>EditLocationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditCompanyWindow.xaml.cs">
+      <DependentUpon>EditCompanyWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditCustomerWindow.xaml.cs">
       <DependentUpon>EditCustomerWindow.xaml</DependentUpon>
