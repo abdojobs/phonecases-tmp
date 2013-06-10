@@ -391,8 +391,9 @@ namespace PhoneCases.WPFGUI
             if (textBoxText == "")
                 return true;
 
-            if (item.ToLower().IndexOf(textBoxText.ToLower()) > -1)
-                return true;
+            if(!string.IsNullOrEmpty(item))
+                if (item.ToLower().IndexOf(textBoxText.ToLower()) > -1)
+                    return true;
 
             return false;
         }

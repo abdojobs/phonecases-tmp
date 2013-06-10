@@ -41,8 +41,9 @@ namespace PhoneCases.WPFGUI
         }
         private void InitBindings()
         {
-            this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, SaveCommandHandler)); //NOTE
+            this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Close, SaveCommandHandler)); //OBS! NOTICE save for close
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Save, SaveCommandHandler));
+            this.CommandBindings.Add(new CommandBinding(PCCommands.AddCompany, AddCompanyCommandHandler));
 
             this.InputBindings.Add(new InputBinding(ApplicationCommands.Close, new KeyGesture(Key.Escape)));
             this.InputBindings.Add(new InputBinding(ApplicationCommands.Save, new KeyGesture(Key.S,ModifierKeys.Control)));
@@ -53,6 +54,13 @@ namespace PhoneCases.WPFGUI
             CompanyComboBox.SelectedItem = m_customer.Company;
             
 
+        }
+        private void AddCompanyCommandHandler(object sender, RoutedEventArgs e)
+        {
+            EditCompanyWindow window = new EditCompanyWindow();
+            window.ShowDialog();
+            window = null;
+            ModelContainerHolder.UpdateModel();
         }
         private void CloseCommandHandler(object sender, RoutedEventArgs e)
         {
