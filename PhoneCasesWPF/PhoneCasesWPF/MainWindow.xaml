@@ -36,7 +36,7 @@
 
 
         <!-- MAIN LIST VIEW -->
-        <ListView HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="5"  Grid.Row="1" Name="MainListView" >
+        <ListView HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="5"  Grid.Row="1" Name="MainListView">
             <!--<local:CommandListViewItem Command="local:PCCommands.OpenCaseWindow" Parameter="TEST">
                 test
             </local:CommandListViewItem>-->
@@ -49,36 +49,53 @@
                     
                 <GridView>
                    
-                    <GridViewColumn Width="Auto" Header="ID" DisplayMemberBinding="{Binding Path=Id}" />
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Id}">
+                        <GridViewColumnHeader Click="GridViewColumnHeaderClickHandler" Name="ID">ID</GridViewColumnHeader>
+                    </GridViewColumn>
                     <!--<GridViewColumn Width="Auto" Header="Ägare" DisplayMemberBinding="{Binding Path=Owner.Name}" />-->
-                    <GridViewColumn Width="Auto" Header="Kund" DisplayMemberBinding="{Binding Path=Customer.Name}" />
-                    <GridViewColumn Width="Auto" Header="Typ" DisplayMemberBinding="{Binding Path=Customer.Company.CompanyType.Name}" />
-                    <GridViewColumn Width="Auto" Header="Företag" DisplayMemberBinding="{Binding Path=Customer.Company.Name}" />
-                    <GridViewColumn Width="Auto" Header="Inkom" DisplayMemberBinding="{Binding Path=StartTime}" />
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Customer.Name}">
+                        <GridViewColumnHeader Click="GridViewColumnHeaderClickHandler">Kund</GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Customer.Company.CompanyType.Name}">
+                        <GridViewColumnHeader Click="GridViewColumnHeaderClickHandler">Typ</GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto"  DisplayMemberBinding="{Binding Path=Customer.Company.Name}">
+                        <GridViewColumnHeader Click="GridViewColumnHeaderClickHandler">Företag</GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto"  DisplayMemberBinding="{Binding Path=StartTime}">
+                        <GridViewColumnHeader Click="GridViewColumnHeaderClickHandler">Inkom</GridViewColumnHeader>
+                    </GridViewColumn>
                     <!--<GridViewColumn Width="Auto" Header="Avslutades" DisplayMemberBinding="{Binding Path=EndTime}" />-->
-                    <GridViewColumn Width="Auto" Header="Total tid" DisplayMemberBinding="{Binding Path=TotalTime, Converter={StaticResource SecondsToTimeConverter}}" />
-                    <GridViewColumn Width="Auto" Header="PRIO">
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=TotalTime, Converter={StaticResource SecondsToTimeConverter}}">
+                        <GridViewColumnHeader Click="GridViewColumnHeaderClickHandler">Total tid</GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" >
+                        <GridViewColumnHeader Click="GridViewColumnHeaderClickHandler">PRIO</GridViewColumnHeader>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox IsChecked="{Binding Path=HighPrio}" IsEnabled="False"></CheckBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="Auto" Header="Återkoppla">
+                    <GridViewColumn Width="Auto" >
+                        <GridViewColumnHeader Click="GridViewColumnHeaderClickHandler">Återkoppla</GridViewColumnHeader>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox IsChecked="{Binding Path=Reconnect}" IsEnabled="False"></CheckBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="Auto" Header="Klar">
+                    <GridViewColumn Width="Auto">
+                        <GridViewColumnHeader Click="GridViewColumnHeaderClickHandler">Klar</GridViewColumnHeader>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox IsChecked="{Binding Path=Closed}" IsEnabled="False"></CheckBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="Auto" Header="Taggar" DisplayMemberBinding="{Binding Path=Tag.Name}" />
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Tag.Name}">
+                        <GridViewColumnHeader Click="GridViewColumnHeaderClickHandler">Taggar</GridViewColumnHeader>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
 

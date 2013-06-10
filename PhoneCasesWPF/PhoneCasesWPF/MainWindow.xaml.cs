@@ -37,7 +37,8 @@ namespace PhoneCases.WPFGUI
         //public ModelContainer Mc { get { return m_mc; } set { m_mc = value; } } 
 
         public PcInterpreter m_interpreter;
-
+        private GridViewColumnHeader m_lastHeaderClicked = null;
+        private ListSortDirection m_lastDirection = ListSortDirection.Ascending;
 
 
         public MainWindow()
@@ -118,6 +119,7 @@ namespace PhoneCases.WPFGUI
             //MainListView.AddHandler(,)
             MainListView.MouseDoubleClick += OpenCaseWindowClickHandler;
             
+            
 
             MainListView.DataContext = model.Model.Cases.ToList();
 
@@ -149,6 +151,43 @@ namespace PhoneCases.WPFGUI
         {
             if(((Cases)((ListView)e.Source).SelectedItem) != null)
                 OpenCaseWindow((Cases)((ListView)e.Source).SelectedItem);
+        }
+        public void GridViewColumnHeaderClickHandler(object sender, RoutedEventArgs e)
+        {
+            GridViewColumnHeader headerClicked = e.OriginalSource as GridViewColumnHeader;
+            ListSortDirection direction;
+
+            if (headerClicked != null)
+            {
+                if (headerClicked.Role != GridViewColumnHeaderRole.Padding)
+                {
+                    string header = "ID";//headerClicked.Column.Header.ToString();
+                    if (!string.IsNullOrEmpty(header))
+                    {
+                        if (headerClicked != m_lastHeaderClicked)
+                            direction = ListSortDirection.Ascending;
+                        else
+                        {
+                            if (m_lastDirection == ListSortDirection.Ascending)
+                                direction = ListSortDirection.Descending;
+                            else
+                                direction = ListSortDirection.Ascending;
+                        }
+                        SortListView(MainListView, header, direction);
+                        m_lastDirection = direction;
+                        m_lastHeaderClicked = headerClicked;
+                    }
+                }
+            }
+
+        }
+        private void SortListView(ListView list, string sortBy, ListSortDirection direction)
+        {
+            ICollectionView dataView = CollectionViewSource.GetDefaultView(list.ItemsSource);
+            dataView.SortDescriptions.Clear();
+            SortDescription sd = new SortDescription(sortBy, direction);
+            dataView.SortDescriptions.Add(sd);
+            dataView.Refresh();
         }
         public void OpenCaseWindow(string caseId)
         {
